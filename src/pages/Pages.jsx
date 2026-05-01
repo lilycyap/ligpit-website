@@ -1,73 +1,58 @@
-import { useState } from 'react'
-import { PageHeader, FAQItem } from '../components/Components'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { PageHeader, FAQItem, GoldRow } from '../components/Components'
 import { faqs } from '../data/faqs'
 
-// ── How It Works ─────────────────────────────────────────────────────────
-export function HowItWorks() {
-  const steps = [
-    {
-      step: '01',
-      title: 'Discovery Call',
-      desc: 'A free 20-minute call where we learn about your space, your goals, and what feels overwhelming. No commitment — just a conversation.',
-      detail: 'We will ask about the rooms you want to tackle, your timeline, and any specific challenges. This helps us prepare and give you an accurate quote.',
-    },
-    {
-      step: '02',
-      title: 'Session Planning',
-      desc: 'We create a tailored plan for your sessions — which rooms, in what order, and what supplies we will bring.',
-      detail: 'Every home is different. We might recommend starting with the room that stresses you most, or the one that will give you the quickest win.',
-    },
-    {
-      step: '03',
-      title: 'Decluttering Session',
-      desc: 'We work alongside you, guiding decisions and doing the heavy lifting. You stay in control of every keep-or-let-go choice.',
-      detail: 'Sessions are typically 3–4 hours. We bring bags, labels, and a calm, non-judgmental approach. We sort into keep, donate, recycle, and discard.',
-    },
-    {
-      step: '04',
-      title: 'Organizing & Systems',
-      desc: 'Once the clutter is gone, we set up storage systems and routines that fit how you actually live.',
-      detail: 'This is where the magic happens. Everything gets a home. We label, containerize, and create habits that keep your space feeling good long-term.',
-    },
-    {
-      step: '05',
-      title: 'Follow-Up',
-      desc: 'Two to four weeks later, we check in to see how the systems are holding up and fine-tune anything that needs adjusting.',
-      detail: 'This follow-up is included in our packages, or available as an add-on. It is the secret to making changes that actually stick.',
-    },
-  ]
+const serif = "'Cormorant Garamond', Georgia, serif"
+const sans  = "'Montserrat', sans-serif"
+const DARK  = '#2B2B2B'; const GREY = '#555550'; const MID = '#888880'
+const GOLD  = '#B8965A'; const OLIVE = '#6F7A63'; const BEIGE = '#F2EFEA'
+const WHITE = '#ffffff'; const BORD = '#E8E4DC'
 
+// ── HOW IT WORKS ──────────────────────────────────────────────────────────
+const steps = [
+  { n:1, title:'Inquiry',             summary:'Get in touch',         body:'Contact Ligpit by website, email, Instagram DM, or WhatsApp. A response arrives within 24 hours.' },
+  { n:2, title:'Discovery Session',   summary:'60 minutes',           body:'A calm walkthrough of your home. We understand your space, goals, and pace. No pressure, no judgment.' },
+  { n:3, title:'Quote and Plan',      summary:'Within 2 business days',body:'A clear written quote and recommended service plan. Everything is transparent before you commit.' },
+  { n:4, title:'Booking Confirmation',summary:'Deposit secures slot', body:'Confirm the session. Receive session prep instructions. Your slot is confirmed in the calendar.' },
+  { n:5, title:'Session Day',         summary:'The work begins',      body:'Ligpit arrives prepared. Work begins with one clear priority zone. You decide every item.' },
+  { n:6, title:'Handover',            summary:'The system is yours',  body:'Every organized area is walked through. Your new system is explained. Maintenance habits introduced.' },
+  { n:7, title:'Follow-Up',           summary:'7-day check-in',       body:'A 7-day follow-up message is sent after every session. A 30-minute check-in call is available as an add-on.' },
+]
+
+export function HowItWorks() {
   return (
     <>
-      <PageHeader
-        title="How It Works"
-        subtitle="A clear, supportive process from first call to lasting results."
-      />
-      <section className="section-padding bg-beige">
-        <div className="container-site max-w-3xl">
-          <div className="space-y-16">
-            {steps.map((item) => (
-              <div key={item.step} className="flex gap-8">
-                <div className="flex-shrink-0">
-                  <span className="text-gold font-serif text-5xl">{item.step}</span>
+      <PageHeader overline="The Process" title="Clear from first contact to lasting calm" subtitle="Every step is designed to feel manageable and respectful. No surprises." />
+
+      <section className="section-py" style={{ background:BEIGE }}>
+        <div className="container-site">
+          <div style={{ maxWidth:'760px', margin:'0 auto' }}>
+            {steps.map((s, i) => (
+              <div key={s.n} style={{ display:'flex', gap:'3.5rem', marginBottom:'3.5rem', alignItems:'flex-start' }}>
+                <div style={{ display:'flex', flexDirection:'column', alignItems:'center', flexShrink:0 }}>
+                  <span style={{ fontFamily:serif, fontSize:'3.5rem', color:GOLD, lineHeight:1, fontWeight:300 }}>
+                    {String(s.n).padStart(2,'0')}
+                  </span>
+                  {i < steps.length-1 && <div style={{ width:'1px', flex:1, background:BORD, minHeight:'40px', marginTop:'0.75rem' }} />}
                 </div>
-                <div>
-                  <h3 className="font-serif text-2xl mb-3">{item.title}</h3>
-                  <p className="text-charcoal/70 leading-relaxed mb-3">{item.desc}</p>
-                  <p className="text-charcoal/50 text-sm leading-relaxed">{item.detail}</p>
+                <div style={{ paddingBottom:'2.4rem', borderBottom:`1px solid ${i < steps.length-1 ? 'transparent' : BORD}`, flex:1 }}>
+                  <p className="t-over" style={{ marginBottom:'0.5rem' }}>{s.summary}</p>
+                  <h3 style={{ fontFamily:serif, fontSize:'2.1rem', fontWeight:400, color:DARK, marginBottom:'0.75rem', lineHeight:1.1 }}>{s.title}</h3>
+                  <p style={{ fontFamily:sans, fontSize:'1.05rem', lineHeight:1.8, color:GREY, maxWidth:'500px' }}>{s.body}</p>
                 </div>
               </div>
             ))}
           </div>
-          <div className="text-center mt-16">
-            <a
-              href="https://calendly.com/ligpit/discovery"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              Book Your Free Call
-            </a>
+        </div>
+      </section>
+
+      <section style={{ background:DARK, padding:'5rem 0', textAlign:'center' }}>
+        <div className="container-site">
+          <h2 className="t-heading" style={{ color:'#fff', marginBottom:'2.4rem' }}>Begin with a Discovery Session</h2>
+          <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:'1rem' }}>
+            <Link to="/contact" className="btn btn-gold">Request a Quote</Link>
+            <a href="https://calendly.com/ligpit/discovery" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Book Online</a>
           </div>
         </div>
       </section>
@@ -75,54 +60,75 @@ export function HowItWorks() {
   )
 }
 
-// ── About ───────────────────────────────────────────────────────────────
+// ── ABOUT ─────────────────────────────────────────────────────────────────
 export function About() {
   return (
     <>
-      <PageHeader
-        title="About Ligpit"
-        subtitle="The story behind your Berlin organizing support."
-      />
-      <section className="section-padding bg-beige">
-        <div className="container-site max-w-3xl">
-          <div className="space-y-8 text-charcoal/80 leading-relaxed">
-            <p className="text-lg">
-              Ligpit was born from a simple observation: moving to a new country is hard enough —
-              your home should not add to the stress.
-            </p>
-            <p>
-              Founded in Berlin, we specialize in helping expats, professionals, and busy households
-              create calm, functional living spaces. We understand the unique challenges of setting
-              up home in a new city — from smaller apartments to different storage norms — and we
-              bring a practical, culturally sensitive approach to every project.
-            </p>
-            <p>
-              Our philosophy is simple: less clutter, more calm. We believe that an organized home
-              is not about perfection or minimalism — it is about creating a space that supports
-              the life you actually live.
-            </p>
-            <p>
-              We work alongside you, never without you. Every decision is yours. We bring the
-              guidance, the systems, and the heavy lifting — you bring the vision of how you want
-              your home to feel.
-            </p>
-          </div>
+      <PageHeader overline="About Ligpit" title="A service built on structure, care, and respect" subtitle="Ligpit was created to help people restore order in their homes through practical support and calm decision-making." />
 
-          <div className="mt-16 bg-white p-8 rounded-sm">
-            <h3 className="font-serif text-2xl mb-6">Our Values</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                { title: 'Respect', desc: 'We never judge your stuff. We help you make decisions that feel right.' },
-                { title: 'Practicality', desc: 'Beautiful systems that do not work in real life are not solutions. We design for how you actually live.' },
-                { title: 'Sustainability', desc: 'We prioritize donating and recycling over discarding. Less waste, more care.' },
-                { title: 'Calm', desc: 'The process should feel as good as the result. We bring patience and warmth to every session.' },
-              ].map((value) => (
-                <div key={value.title}>
-                  <h4 className="font-serif text-lg text-olive mb-2">{value.title}</h4>
-                  <p className="text-charcoal/70 text-sm leading-relaxed">{value.desc}</p>
-                </div>
-              ))}
+      <section className="section-py" style={{ background:BEIGE }}>
+        <div className="container-site">
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'5rem', alignItems:'start' }}>
+            <div>
+              <GoldRow />
+              <p className="t-over" style={{ marginBottom:'1rem' }}>The Name</p>
+              <h2 className="t-heading" style={{ marginBottom:'2.4rem' }}>
+                What does <em style={{ fontWeight:300 }}>Ligpit</em> mean?
+              </h2>
+              <p style={{ fontFamily:sans, fontSize:'1.5rem', lineHeight:1.8, color:GREY, marginBottom:'1.45rem' }}>
+                Ligpit is a Tagalog word meaning "to clear" or "to put in order." It captures both the physical and the emotional work of bringing a home into a state that supports the life you want to live.
+              </p>
+              <p style={{ fontFamily:sans, fontSize:'1.5rem', lineHeight:1.8, color:GREY }}>
+                The name reflects a simple belief: that order is not a luxury, and that a calmer home is available to anyone.
+              </p>
             </div>
+
+            <div style={{ background:WHITE, border:`1px solid ${BORD}`, padding:'3.5rem' }}>
+              <span className="gold-sq" style={{ display:'block', marginBottom:'2.4rem' }} />
+              <p style={{ fontFamily:serif, fontSize:'1.85rem', fontStyle:'italic', color:DARK, lineHeight:1.5, fontWeight:300, marginBottom:'2.4rem' }}>
+                "I believe a home should support the life you are trying to build. Ligpit is not about perfection or shame. It is about making your space easier to live in, easier to maintain, and more aligned with what matters now."
+              </p>
+              <div style={{ display:'flex', alignItems:'center', gap:'12px' }}>
+                <span className="gold-line" />
+                <p style={{ fontFamily:sans, fontSize:'0.82rem', letterSpacing:'0.14em', textTransform:'uppercase', fontWeight:500, color:MID }}>
+                  Lily Yap · Founder, Ligpit
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-py" style={{ background:WHITE }}>
+        <div className="container-site">
+          <div style={{ textAlign:'center', marginBottom:'3.5rem' }}>
+            <GoldRow center />
+            <h2 className="t-heading">How every session is delivered</h2>
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))', gap:'2.4rem', maxWidth:'800px', margin:'0 auto' }}>
+            {[
+              ['Respectfully', 'Every home is met without judgment. The session starts from where things are, not where they should be.'],
+              ['Collaboratively', 'Every decision belongs to the client. Ligpit guides — never decides, never pressures.'],
+              ['Practically', 'The goal is a system that works for your actual life. Maintainable, real, and lasting.'],
+            ].map(([t, b]) => (
+              <div key={t} style={{ textAlign:'center' }}>
+                <div style={{ display:'flex', justifyContent:'center', alignItems:'center', gap:'8px', marginBottom:'1.45rem' }}>
+                  <span className="gold-line" /><span className="gold-sq" /><span className="gold-line" />
+                </div>
+                <h3 style={{ fontFamily:serif, fontSize:'2.4rem', fontWeight:400, color:DARK, marginBottom:'0.75rem' }}>{t}</h3>
+                <p style={{ fontFamily:sans, fontSize:'1.05rem', lineHeight:1.7, color:GREY }}>{b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ background:BEIGE, padding:'4rem 0', textAlign:'center' }}>
+        <div className="container-site">
+          <h2 className="t-heading" style={{ marginBottom:'2.4rem' }}>Start with a conversation</h2>
+          <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:'1rem' }}>
+            <Link to="/contact" className="btn btn-olive">Request a Quote</Link>
+            <Link to="/services" className="btn btn-dark">View Services</Link>
           </div>
         </div>
       </section>
@@ -130,37 +136,28 @@ export function About() {
   )
 }
 
-// ── FAQ ─────────────────────────────────────────────────────────────────
+// ── FAQ ────────────────────────────────────────────────────────────────────
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState(null)
-
   return (
     <>
-      <PageHeader
-        title="FAQ"
-        subtitle="Answers to the questions we hear most."
-      />
-      <section className="section-padding bg-beige">
-        <div className="container-site max-w-2xl">
-          <div>
-            {faqs.map((faq, i) => (
-              <FAQItem
-                key={i}
-                faq={faq}
-                isOpen={openIndex === i}
-                onToggle={() => setOpenIndex(openIndex === i ? null : i)}
-              />
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <p className="text-charcoal/70 mb-4">Still have questions?</p>
-            <a
-              href="https://wa.me/491234567890"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              WhatsApp Us
+      <PageHeader overline="Common Questions" title="Answers before you reach out" subtitle="Questions not listed here? Email hello@ligpit.de" />
+
+      <section className="section-py" style={{ background:BEIGE }}>
+        <div className="container-site" style={{ maxWidth:'760px', margin:'0 auto' }}>
+          <GoldRow />
+          {faqs.map((faq, i) => <FAQItem key={i} faq={faq} defaultOpen={i===0} />)}
+        </div>
+      </section>
+
+      <section style={{ background:DARK, padding:'4rem 0', textAlign:'center' }}>
+        <div className="container-site">
+          <h2 className="t-heading" style={{ color:'#fff', marginBottom:'1rem' }}>Still have a question?</h2>
+          <p style={{ fontFamily:sans, fontSize:'1.05rem', color:MID, marginBottom:'2.4rem' }}>A response will arrive within 24 hours.</p>
+          <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:'1rem' }}>
+            <Link to="/contact" className="btn btn-gold">Contact Ligpit</Link>
+            <a href="mailto:hello@ligpit.de" style={{ fontFamily:sans, fontSize:'0.95rem', color:MID, display:'flex', alignItems:'center', textDecoration:'none', transition:'color 0.2s' }}
+              onMouseEnter={e=>e.target.style.color=GOLD} onMouseLeave={e=>e.target.style.color=MID}>
+              hello@ligpit.de
             </a>
           </div>
         </div>
@@ -169,106 +166,96 @@ export function FAQ() {
   )
 }
 
-// ── Contact ─────────────────────────────────────────────────────────────
+// ── CONTACT ────────────────────────────────────────────────────────────────
 export function Contact() {
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
   return (
     <>
-      <PageHeader
-        title="Contact"
-        subtitle="Get in touch — we would love to hear from you."
-      />
-      <section className="section-padding bg-beige">
-        <div className="container-site max-w-4xl">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Form */}
+      <PageHeader overline="Get in Touch" title="Start the conversation" subtitle="Contact Ligpit to request a quote, ask a question, or book a Discovery Session." />
+
+      <section className="section-py" style={{ background:BEIGE }}>
+        <div className="container-site">
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'4rem' }}>
+
+            {/* Left */}
             <div>
-              <h3 className="font-serif text-2xl mb-6">Send a Message</h3>
-              {submitted ? (
-                <div className="bg-olive/10 p-8 rounded-sm text-center">
-                  <h4 className="font-serif text-xl text-olive mb-2">Thank you!</h4>
-                  <p className="text-charcoal/70">We will get back to you within 24 hours.</p>
+              <GoldRow />
+              <p className="t-over" style={{ marginBottom:'1rem' }}>Contact Details</p>
+
+              {[
+                { label:'Email',     content:<a href="mailto:hello@ligpit.de" style={{ fontFamily:sans, fontSize:'1.5rem', color:DARK, textDecoration:'none' }}>hello@ligpit.de</a> },
+                { label:'Instagram', content:<a href="https://instagram.com/ligpit.berlin" target="_blank" rel="noopener noreferrer" style={{ fontFamily:sans, fontSize:'1.5rem', color:DARK, textDecoration:'none' }}>@ligpit.berlin</a> },
+                { label:'WhatsApp',  content:<a href="https://wa.me/4915158845018" target="_blank" rel="noopener noreferrer" style={{ fontFamily:sans, fontSize:'1.5rem', color:DARK, textDecoration:'none' }}>Send a WhatsApp message</a> }, // Replace number
+              ].map(({ label, content }) => (
+                <div key={label} style={{ marginBottom:'2.4rem' }}>
+                  <p style={{ fontFamily:sans, fontSize:'0.8rem', letterSpacing:'0.18em', textTransform:'uppercase', fontWeight:500, color:MID, marginBottom:'0.4rem' }}>{label}</p>
+                  {content}
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      className="w-full px-4 py-3 bg-white border border-charcoal/10 rounded-sm focus:outline-none focus:border-olive transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Email</label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      className="w-full px-4 py-3 bg-white border border-charcoal/10 rounded-sm focus:outline-none focus:border-olive transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Message</label>
-                    <textarea
-                      name="message"
-                      rows="5"
-                      required
-                      className="w-full px-4 py-3 bg-white border border-charcoal/10 rounded-sm focus:outline-none focus:border-olive transition-colors resize-none"
-                    />
-                  </div>
-                  <button type="submit" className="btn-primary w-full">
-                    Send Message
-                  </button>
-                </form>
-              )}
+              ))}
+
+              <div style={{ background:DARK, padding:'2.4rem', marginTop:'2.4rem' }}>
+                <p style={{ fontFamily:sans, fontSize:'0.8rem', letterSpacing:'0.18em', textTransform:'uppercase', fontWeight:500, color:GOLD, marginBottom:'0.75rem' }}>
+                  Book Online
+                </p>
+                <p style={{ fontFamily:sans, fontSize:'1rem', color:MID, marginBottom:'1.45rem', lineHeight:1.7 }}>
+                  Book a Discovery Session directly via the online calendar.
+                </p>
+                {/* Replace with real Calendly link */}
+                <a href="https://calendly.com/ligpit/discovery" target="_blank" rel="noopener noreferrer" className="btn btn-gold" style={{ display:'block', textAlign:'center' }}>
+                  Book Discovery Session
+                </a>
+              </div>
             </div>
 
-            {/* Contact Info */}
-            <div>
-              <h3 className="font-serif text-2xl mb-6">Other Ways to Reach Us</h3>
-              <div className="space-y-6">
-                <div>
-                  <h4 className="font-medium mb-1">Email</h4>
-                  <a href="mailto:hello@ligpit.com" className="text-olive hover:text-olive-dark transition-colors">
-                    hello@ligpit.com
-                  </a>
+            {/* Form */}
+            <div style={{ background:WHITE, border:`1px solid ${BORD}`, padding:'3.5rem' }}>
+              <h3 style={{ fontFamily:serif, fontSize:'1.85rem', fontWeight:400, color:DARK, marginBottom:'2.4rem', lineHeight:1.1 }}>
+                Request a Quote
+              </h3>
+              {/*
+                DEVELOPER: Connect form submission here.
+                Option A — Formspree: add action="https://formspree.io/f/YOUR_ID" method="POST"
+                Option B — Netlify Forms: add data-netlify="true"
+                Option C — Custom: add onSubmit handler with fetch()
+              */}
+              <form onSubmit={e => e.preventDefault()} style={{ display:'flex', flexDirection:'column', gap:'1.45rem' }}>
+                <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1rem' }}>
+                  <div><label className="form-label">Full Name *</label><input type="text" name="name" required className="form-input" placeholder="Your name" /></div>
+                  <div><label className="form-label">Email *</label><input type="email" name="email" required className="form-input" placeholder="you@example.com" /></div>
+                </div>
+                <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1rem' }}>
+                  <div><label className="form-label">Phone / WhatsApp</label><input type="tel" name="phone" className="form-input" placeholder="+49 ..." /></div>
+                  <div><label className="form-label">Berlin District</label><input type="text" name="district" className="form-input" placeholder="e.g. Prenzlauer Berg" /></div>
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">WhatsApp</h4>
-                  <a
-                    href="https://wa.me/491234567890"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-olive hover:text-olive-dark transition-colors"
-                  >
-                    Send a WhatsApp Message
-                  </a>
+                  <label className="form-label">Preferred Service</label>
+                  <select name="service" className="form-input">
+                    <option value="">Not sure yet — I would like advice</option>
+                    <option>The Ligpit Discovery</option>
+                    <option>The Ligpit Focus</option>
+                    <option>The Ligpit Half Day</option>
+                    <option>The Ligpit Day</option>
+                    <option>The Ligpit Home</option>
+                    <option>The Ligpit Reset (returning clients)</option>
+                    <option>The Ligpit Move</option>
+                  </select>
                 </div>
+                <div><label className="form-label">Type of Help Needed</label><input type="text" name="help" className="form-input" placeholder="e.g. wardrobe, kitchen, moving..." /></div>
+                <div><label className="form-label">Preferred Timeframe</label><input type="text" name="timing" className="form-input" placeholder="e.g. September, weekday mornings..." /></div>
+                <div><label className="form-label">Message</label><textarea name="message" rows={4} className="form-input" style={{ resize:'none' }} placeholder="Tell me a little about your space and what you want to achieve..." /></div>
                 <div>
-                  <h4 className="font-medium mb-1">Book a Call</h4>
-                  <a
-                    href="https://calendly.com/ligpit/discovery"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-olive hover:text-olive-dark transition-colors"
-                  >
-                    Schedule a Free Discovery Call
-                  </a>
+                  <label className="form-label">Before & After Photos</label>
+                  <select name="photos" className="form-input">
+                    <option value="yes">Yes — photos are welcome</option>
+                    <option value="cropped">Yes — cropped or anonymous only</option>
+                    <option value="no">No — I prefer no photos</option>
+                    <option value="unsure">Not sure yet</option>
+                  </select>
                 </div>
-                <div>
-                  <h4 className="font-medium mb-1">Location</h4>
-                  <p className="text-charcoal/70">Berlin, Germany</p>
-                  <p className="text-charcoal/50 text-sm">Serving all neighborhoods within the S-Bahn ring</p>
-                </div>
-              </div>
+                <button type="submit" className="btn btn-olive" style={{ marginTop:'0.5rem' }}>Send Request</button>
+                <p style={{ fontFamily:sans, fontSize:'0.87rem', color:MID, textAlign:'center', lineHeight:1.6 }}>
+                  A response will arrive within 24 hours. All information is kept strictly confidential.
+                </p>
+              </form>
             </div>
           </div>
         </div>

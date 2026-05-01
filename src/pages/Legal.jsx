@@ -1,45 +1,40 @@
+import React from 'react'
 import { PageHeader } from '../components/Components'
 
-// ── Impressum ───────────────────────────────────────────────────────────
+const sans = "'Montserrat', sans-serif"
+const serif = "'Cormorant Garamond', Georgia, serif"
+const DARK = '#2B2B2B'; const GREY = '#555550'; const GOLD = '#B8965A'; const BEIGE = '#F2EFEA'; const BORD = '#E8E4DC'
+
+const Warning = () => (
+  <div style={{ border:`2px solid ${GOLD}`, background:'rgba(184,150,90,0.05)', padding:'1.25rem 1.5rem', marginBottom:'3.5rem' }}>
+    <p style={{ fontFamily:sans, fontSize:'0.8rem', letterSpacing:'0.18em', textTransform:'uppercase', fontWeight:500, color:GOLD, marginBottom:'0.5rem' }}>
+      ⚠ Developer Note
+    </p>
+    <p style={{ fontFamily:sans, fontSize:'1.05rem', lineHeight:1.7, color:DARK }}>
+      This is placeholder content and must be reviewed by a qualified German legal advisor before this website is published.
+    </p>
+  </div>
+)
+
 export function Impressum() {
   return (
     <>
-      <PageHeader title="Impressum" subtitle="Legal information as required by German law." />
-      <section className="section-padding bg-beige">
-        <div className="container-site max-w-3xl">
-          <div className="bg-white p-8 md:p-12 rounded-sm">
-            <div className="bg-gold/10 border border-gold/30 p-4 rounded-sm mb-8">
-              <p className="text-sm text-charcoal/80">
-                <strong>Developer Note:</strong> Replace all placeholder information below with real legal details reviewed by a German legal advisor before publishing.
-              </p>
-            </div>
-            <div className="prose max-w-none text-charcoal/80 leading-relaxed space-y-6">
-              <div>
-                <h3 className="font-serif text-xl mb-2">Information according to § 5 TMG</h3>
-                <p>[Full Name]<br />[Street Address]<br />[Postal Code] Berlin<br />Germany</p>
+      <PageHeader overline="Legal" title="Impressum" />
+      <section className="section-py" style={{ background:BEIGE }}>
+        <div className="container-site" style={{ maxWidth:'640px' }}>
+          <Warning />
+          <div style={{ display:'flex', flexDirection:'column', gap:'2.4rem', fontFamily:sans, fontSize:'1.05rem', lineHeight:1.8, color:GREY }}>
+            {[
+              ['Angaben gemäß § 5 TMG', 'Lily C. Yap Services as Ligpit\nBerlin, Germany\nEmail: hello@ligpit.de\nWebsite: ligpit.de'],
+              ['Verantwortlich für den Inhalt', 'Lily C. Yap'],
+              ['Steuerliche Angaben', '[Steuernummer / Umsatzsteuer-ID: to be added before publishing]'],
+              ['Gewerbeanmeldung', '[Registration details: to be added before publishing]'],
+            ].map(([title, body]) => (
+              <div key={title}>
+                <h3 style={{ fontFamily:serif, fontSize:'1.85rem', fontWeight:500, color:DARK, marginBottom:'0.5rem' }}>{title}</h3>
+                <p style={{ whiteSpace:'pre-line' }}>{body}</p>
               </div>
-              <div>
-                <h3 className="font-serif text-xl mb-2">Contact</h3>
-                <p>Phone: [Phone Number]<br />Email: hello@ligpit.com</p>
-              </div>
-              <div>
-                <h3 className="font-serif text-xl mb-2">VAT ID</h3>
-                <p>VAT identification number: [VAT Number]</p>
-              </div>
-              <div>
-                <h3 className="font-serif text-xl mb-2">Responsible for content</h3>
-                <p>[Full Name]<br />[Address as above]</p>
-              </div>
-              <div>
-                <h3 className="font-serif text-xl mb-2">Dispute Resolution</h3>
-                <p>
-                  The European Commission provides a platform for online dispute resolution (ODR):{' '}
-                  <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-olive">
-                    https://ec.europa.eu/consumers/odr
-                  </a>
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -47,78 +42,29 @@ export function Impressum() {
   )
 }
 
-// ── Privacy Policy ──────────────────────────────────────────────────────
-export function PrivacyPolicy() {
+export function Privacy() {
   return (
     <>
-      <PageHeader title="Privacy Policy" subtitle="How we handle your data." />
-      <section className="section-padding bg-beige">
-        <div className="container-site max-w-3xl">
-          <div className="bg-white p-8 md:p-12 rounded-sm">
-            <div className="bg-gold/10 border border-gold/30 p-4 rounded-sm mb-8">
-              <p className="text-sm text-charcoal/80">
-                <strong>Developer Note:</strong> Replace all placeholder content below with a GDPR-compliant privacy policy reviewed by a legal professional before publishing.
-              </p>
-            </div>
-            <div className="prose max-w-none text-charcoal/80 leading-relaxed space-y-6">
-              <div>
-                <h3 className="font-serif text-xl mb-2">1. Data Controller</h3>
-                <p>
-                  The data controller responsible for this website is [Full Name], [Address], Berlin, Germany.
-                  Email: hello@ligpit.com
-                </p>
+      <PageHeader overline="Legal" title="Datenschutzerklärung" subtitle="Privacy Policy" />
+      <section className="section-py" style={{ background:BEIGE }}>
+        <div className="container-site" style={{ maxWidth:'640px' }}>
+          <Warning />
+          <div style={{ display:'flex', flexDirection:'column', gap:'2.4rem', fontFamily:sans, fontSize:'1.05rem', lineHeight:1.8, color:GREY }}>
+            {[
+              ['1. Data Controller', 'Lily C. Yap Services as Ligpit, Berlin, Germany. Email: hello@ligpit.de'],
+              ['2. What Data We Collect', 'Contact form submissions (name, email, phone, message). Email communication. Booking information via third-party calendar (Calendly).'],
+              ['3. How We Use Your Data', 'Personal data is used solely to communicate with you, plan and deliver services, and send relevant follow-up information. Your data is never sold or shared with third parties.'],
+              ['4. Legal Basis (GDPR)', 'Processing is carried out on the basis of legitimate interest (Art. 6(1)(f) GDPR) and, where applicable, performance of a contract (Art. 6(1)(b) GDPR).'],
+              ['5. Data Retention', 'Client data is retained for a maximum of 2 years after the final session or last contact.'],
+              ['6. Your Rights', 'You may request access, correction, or deletion of your personal data at any time. Contact: hello@ligpit.de'],
+              ['7. Analytics', '[To be completed if analytics tools are added before publishing.]'],
+              ['8. Cookies', '[To be completed before publishing.]'],
+            ].map(([title, body]) => (
+              <div key={title}>
+                <h3 style={{ fontFamily:serif, fontSize:'1.85rem', fontWeight:500, color:DARK, marginBottom:'0.5rem' }}>{title}</h3>
+                <p>{body}</p>
               </div>
-              <div>
-                <h3 className="font-serif text-xl mb-2">2. Data We Collect</h3>
-                <p>
-                  When you contact us via our contact form or email, we collect the information you provide
-                  (name, email address, message content). We also collect standard technical information
-                  from your browser when you visit our website.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-serif text-xl mb-2">3. Purpose of Processing</h3>
-                <p>
-                  We process your data to respond to your inquiries, provide our services, and improve
-                  our website. We do not use your data for automated decision-making or profiling.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-serif text-xl mb-2">4. Legal Basis</h3>
-                <p>
-                  We process your data based on your consent (Art. 6(1)(a) GDPR), for the performance of
-                  a contract (Art. 6(1)(b) GDPR), or for our legitimate interests (Art. 6(1)(f) GDPR).
-                </p>
-              </div>
-              <div>
-                <h3 className="font-serif text-xl mb-2">5. Your Rights</h3>
-                <p>
-                  You have the right to access, rectify, erase, restrict processing, data portability,
-                  and object to the processing of your data. To exercise these rights, contact us at
-                  hello@ligpit.com.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-serif text-xl mb-2">6. Data Retention</h3>
-                <p>
-                  We retain your personal data only for as long as necessary to fulfill the purposes
-                  for which it was collected, or as required by law.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-serif text-xl mb-2">7. Third-Party Services</h3>
-                <p>
-                  Our website may use third-party services (such as Calendly for booking). These services
-                  have their own privacy policies. We encourage you to review them.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-serif text-xl mb-2">8. Contact</h3>
-                <p>
-                  For any privacy-related questions, contact us at hello@ligpit.com.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
