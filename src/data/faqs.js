@@ -1,7 +1,7 @@
 export const faqs = [
   {
     q: 'How does a typical session work?',
-    a: 'We start with a free discovery call to understand your goals and space. Then we schedule a session (usually 3–4 hours) where we work alongside you to declutter and organize. You make every decision — we guide, support, and do the heavy lifting.',
+    a: 'We start with a Discovery Session — a calm walkthrough of your home to understand your space, goals, and pace. You then receive a clear written quote and recommended service plan. During sessions, we work alongside you. You decide every item. We guide, support, and do the heavy lifting.',
   },
   {
     q: 'Do I need to be present during the session?',
@@ -9,7 +9,7 @@ export const faqs = [
   },
   {
     q: 'How long does a session last?',
-    a: 'Sessions are typically 3–4 hours. We find this is the sweet spot — long enough to make real progress, short enough to keep your energy and focus up.',
+    a: 'The Discovery Session is 60 minutes. Full sessions range from 3 hours (Focus) to 7 hours (Full Day). We find the right length based on your space and energy.',
   },
   {
     q: 'What areas do you cover?',
@@ -17,7 +17,7 @@ export const faqs = [
   },
   {
     q: 'Is it messy during the process?',
-    a: 'Honestly, yes — briefly! Decluttering means pulling everything out before putting it back in a better way. But we always leave your space tidy at the end of each session.',
+    a: 'Honestly, yes — briefly. Decluttering means pulling everything out before putting it back in a better way. But we always leave your space tidy at the end of each session.',
   },
   {
     q: 'Do you help with hoarding situations?',
@@ -29,6 +29,6 @@ export const faqs = [
   },
   {
     q: 'Do you offer packages or discounts?',
-    a: 'Yes! We offer packages for multi-room projects and returning clients. Book a free discovery call to discuss what works best for your situation.',
+    a: 'Yes. The Ligpit Home is a multi-day package with a reduced rate. Returning clients also benefit from the Ligpit Reset at a lower session rate. Book a Discovery Session to discuss what works best for your situation.',
   },
 ]

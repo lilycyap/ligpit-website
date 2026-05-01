@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,14 +9,146 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-beige text-charcoal font-sans antialiased;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    background: #F2EFEA;
+    color: #2B2B2B;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    font-family: 'Cormorant Garamond', Georgia, serif;
   }
 }
 
 @layer components {
+  /* ── Layout ──────────────────────────────────────────────────────── */
+  .section-py {
+    @apply py-20 md:py-28;
+  }
+  .container-site {
+    @apply max-w-site mx-auto px-6 md:px-8;
+  }
+
+  /* ── Typography ─────────────────────────────────────────────────── */
+  .t-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 4.5rem;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+  }
+  .t-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+  }
+  .t-over {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #888880;
+  }
+
+  /* ── Buttons ─────────────────────────────────────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-olive {
+    background: #6F7A63;
+    color: #fff;
+  }
+  .btn-olive:hover {
+    background: #566050;
+  }
+  .btn-gold {
+    background: #B8965A;
+    color: #fff;
+  }
+  .btn-gold:hover {
+    background: #C9AB75;
+  }
+  .btn-dark {
+    background: #2B2B2B;
+    color: #fff;
+  }
+  .btn-dark:hover {
+    background: #444;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: #888880;
+    border: 1px solid #888880;
+  }
+  .btn-ghost:hover {
+    color: #B8965A;
+    border-color: #B8965A;
+  }
+
+  /* ── Gold Decorations ───────────────────────────────────────────── */
+  .gold-line {
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: #B8965A;
+  }
+  .gold-sq {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #B8965A;
+  }
+
+  /* ── Form Elements ──────────────────────────────────────────────── */
+  .form-label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #888880;
+    margin-bottom: 0.5rem;
+  }
+  .form-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    background: #F2EFEA;
+    border: 1px solid #E8E4DC;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-input:focus {
+    border-color: #B8965A;
+  }
+
+  /* ── Animations ─────────────────────────────────────────────────── */
+  .afu {
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .d1 { animation-delay: 100ms; }
+  .d2 { animation-delay: 200ms; }
+  .d3 { animation-delay: 300ms; }
+
+  /* ── Legacy Tailwind-based classes (kept for compatibility) ─────── */
   .btn-primary {
     @apply inline-flex items-center justify-center px-8 py-3 bg-olive text-white font-sans font-medium rounded-sm
            hover:bg-olive-dark transition-colors duration-200;
@@ -23,14 +157,17 @@
     @apply inline-flex items-center justify-center px-8 py-3 border-2 border-olive text-olive font-sans font-medium rounded-sm
            hover:bg-olive hover:text-white transition-colors duration-200;
   }
-  .btn-gold {
-    @apply inline-flex items-center justify-center px-8 py-3 bg-gold text-white font-sans font-medium rounded-sm
-           hover:bg-gold-light transition-colors duration-200;
-  }
   .section-padding {
     @apply py-20 md:py-30;
   }
-  .container-site {
-    @apply max-w-site mx-auto px-6 md:px-8;
-  }
+}
+
+@keyframes fadeUp {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }

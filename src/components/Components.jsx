@@ -1,93 +1,103 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 
-// ── Service Card ────────────────────────────────────────────────────────
-export function ServiceCard({ service, index = 0 }) {
+// ── Gold Row (decorative divider) ───────────────────────────────────────
+export function GoldRow({ center }) {
   return (
-    <div
-      className="group bg-white rounded-sm p-8 shadow-sm hover:shadow-md transition-shadow duration-300"
-      style={{ animationDelay: `${index * 100}ms` }}
-    >
-      <div className="w-12 h-12 bg-olive/10 rounded-full flex items-center justify-center mb-6">
-        <ServiceIcon type={service.icon} />
-      </div>
-      <h3 className="font-serif text-2xl mb-3">{service.title}</h3>
-      <p className="text-charcoal/70 mb-4 leading-relaxed">{service.shortDesc}</p>
-      <p className="text-gold font-medium text-sm">{service.price}</p>
-    </div>
-  )
-}
-
-// ── Service Icon ─────────────────────────────────────────────────────────
-function ServiceIcon({ type }) {
-  const icons = {
-    declutter: (
-      <svg className="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75m-16.5-3.75v3.75" />
-      </svg>
-    ),
-    organize: (
-      <svg className="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-      </svg>
-    ),
-    moving: (
-      <svg className="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V15m18 3.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-12.75H7.5m9 0V5.625c0-.621-.504-1.125-1.125-1.125h-7.5c-.621 0-1.125.504-1.125 1.125V6m9 0H9m0 0v4.5" />
-      </svg>
-    ),
-    wardrobe: (
-      <svg className="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m7.5 0h-7.5m7.5 0l.75 10.5H5.25l.75-10.5" />
-      </svg>
-    ),
-    kitchen: (
-      <svg className="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
-      </svg>
-    ),
-    paper: (
-      <svg className="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-      </svg>
-    ),
-  }
-  return icons[type] || icons.declutter
-}
-
-// ── FAQ Item ─────────────────────────────────────────────────────────────
-export function FAQItem({ faq, isOpen, onToggle }) {
-  return (
-    <div className="border-b border-charcoal/10 last:border-0">
-      <button
-        onClick={onToggle}
-        className="w-full flex items-center justify-between py-5 text-left group"
-      >
-        <span className="font-serif text-lg pr-4 group-hover:text-olive transition-colors">{faq.q}</span>
-        <span className={`text-gold transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}>
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-          </svg>
-        </span>
-      </button>
-      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 pb-5' : 'max-h-0'}`}>
-        <p className="text-charcoal/70 leading-relaxed">{faq.a}</p>
-      </div>
+    <div style={{ display:'flex', alignItems:'center', gap:'10px', marginBottom:'1.45rem', justifyContent: center ? 'center' : 'flex-start' }}>
+      <span className="gold-line" />
+      <span className="gold-sq" />
+      <span className="gold-line" />
     </div>
   )
 }
 
 // ── Page Header ──────────────────────────────────────────────────────────
-export function PageHeader({ title, subtitle }) {
+export function PageHeader({ overline, title, subtitle }) {
+  const DARK = '#2B2B2B'
+  const GOLD = '#B8965A'
+  const serif = "'Cormorant Garamond', Georgia, serif"
+  const sans  = "'Montserrat', sans-serif"
+
   return (
-    <section className="bg-charcoal text-white section-padding">
-      <div className="container-site text-center">
-        <h1 className="text-display-sm md:text-display mb-4">{title}</h1>
-        {subtitle && <p className="text-lg text-white/70 max-w-2xl mx-auto">{subtitle}</p>}
-        <div className="w-16 h-0.5 bg-gold mx-auto mt-8" />
+    <section style={{ background:DARK, padding:'7rem 0 4rem' }}>
+      <div className="container-site" style={{ textAlign:'center' }}>
+        {overline && (
+          <p style={{ fontFamily:sans, fontSize:'0.82rem', letterSpacing:'0.2em', textTransform:'uppercase', fontWeight:500, color:GOLD, marginBottom:'1rem' }}>
+            {overline}
+          </p>
+        )}
+        <h1 style={{ fontFamily:serif, fontSize:'3.5rem', fontWeight:400, color:'#fff', lineHeight:1.1, marginBottom: subtitle ? '1rem' : 0 }}>
+          {title}
+        </h1>
+        {subtitle && (
+          <p style={{ fontFamily:sans, fontSize:'1.05rem', color:'#888880', maxWidth:'560px', margin:'0 auto', lineHeight:1.7 }}>
+            {subtitle}
+          </p>
+        )}
+        <div style={{ display:'flex', justifyContent:'center', alignItems:'center', gap:'10px', marginTop:'2.4rem' }}>
+          <span className="gold-line" />
+          <span className="gold-sq" />
+          <span className="gold-line" />
+        </div>
       </div>
     </section>
+  )
+}
+
+// ── Service Card ─────────────────────────────────────────────────────────
+export function ServiceCard({ service }) {
+  const serif = "'Cormorant Garamond', Georgia, serif"
+  const sans  = "'Montserrat', sans-serif"
+  const DARK  = '#2B2B2B'
+  const GREY  = '#555550'
+  const MID   = '#888880'
+  const GOLD  = '#B8965A'
+  const BORD  = '#E8E4DC'
+  const WHITE = '#ffffff'
+
+  return (
+    <div style={{ background:WHITE, border:`1px solid ${BORD}`, padding:'2.4rem', transition:'border-color 0.3s' }}
+      onMouseEnter={e => e.currentTarget.style.borderColor=GOLD}
+      onMouseLeave={e => e.currentTarget.style.borderColor=BORD}>
+      <span className="gold-sq" style={{ display:'block', marginBottom:'1.45rem' }} />
+      <p className="t-over" style={{ marginBottom:'0.5rem' }}>{service.duration}</p>
+      <h3 style={{ fontFamily:serif, fontSize:'1.85rem', fontWeight:500, color:DARK, marginBottom:'0.75rem', lineHeight:1.15 }}>
+        {service.name}
+      </h3>
+      <p style={{ fontFamily:sans, fontSize:'1rem', lineHeight:1.7, color:GREY }}>
+        {service.description}
+      </p>
+    </div>
+  )
+}
+
+// ── FAQ Item ─────────────────────────────────────────────────────────────
+export function FAQItem({ faq, defaultOpen = false }) {
+  const [isOpen, setIsOpen] = React.useState(defaultOpen)
+  const serif = "'Cormorant Garamond', Georgia, serif"
+  const sans  = "'Montserrat', sans-serif"
+  const DARK  = '#2B2B2B'
+  const GREY  = '#555550'
+  const GOLD  = '#B8965A'
+  const BORD  = '#E8E4DC'
+
+  return (
+    <div style={{ borderBottom:`1px solid ${BORD}`, padding:'1.45rem 0' }}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        style={{ width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between', background:'none', border:'none', cursor:'pointer', textAlign:'left' }}
+      >
+        <span style={{ fontFamily:serif, fontSize:'1.35rem', fontWeight:400, color:DARK, paddingRight:'1rem' }}>{faq.q}</span>
+        <span style={{ color:GOLD, transition:'transform 0.3s', transform: isOpen ? 'rotate(45deg)' : 'rotate(0)', flexShrink:0 }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M12 5v14M5 12h14" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+      </button>
+      <div style={{ maxHeight: isOpen ? '300px' : '0', overflow:'hidden', transition:'max-height 0.3s ease' }}>
+        <p style={{ fontFamily:sans, fontSize:'1.05rem', lineHeight:1.8, color:GREY, paddingTop:'0.75rem' }}>{faq.a}</p>
+      </div>
+    </div>
   )
 }
 

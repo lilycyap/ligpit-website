@@ -4,7 +4,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import { HowItWorks, About, FAQ, Contact } from './pages/Pages'
-import { Impressum, PrivacyPolicy } from './pages/Legal'
+import { Impressum, Privacy } from './pages/Legal'
 
 export default function App() {
   return (
@@ -20,7 +20,7 @@ export default function App() {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/impressum" element={<Impressum />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/privacy" element={<Privacy />} />
           </Routes>
         </main>
         <Footer />
