@@ -33,8 +33,11 @@ export default function Navbar() {
     >
       <div className="container-site flex items-center justify-between h-18">
         {/* Logo */}
-        <Link to="/" className="font-serif text-2xl tracking-wide text-charcoal">
-          Ligpit
+        <Link to="/" style={{ display:'flex', alignItems:'center', gap:'10px', textDecoration:'none' }}>
+          <img src="/logo.svg" alt="Ligpit" style={{ height:'32px', width:'32px' }} />
+          <span style={{ fontFamily:"'Cormorant Garamond', Georgia, serif", fontSize:'1.5rem', fontWeight:400, letterSpacing:'0.04em', color:'#2B2B2B' }}>
+            Ligpit
+          </span>
         </Link>
 
         {/* Desktop Nav */}
