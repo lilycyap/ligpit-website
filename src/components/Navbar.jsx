@@ -34,7 +34,16 @@ export default function Navbar() {
       <div className="container-site flex items-center justify-between h-18">
         {/* Logo */}
         <Link to="/" style={{ display:'flex', alignItems:'center', gap:'12px', textDecoration:'none' }}>
-          <img src="/logo.png" alt="Ligpit" style={{ height:'40px', width: 'auto' }} />
+          <img
+            src="/logo.png"
+            alt="Ligpit"
+            style={{
+              height:'40px',
+              width: 'auto',
+              filter: scrolled ? 'none' : 'invert(1) brightness(1.2)',
+              transition: 'filter 0.3s ease'
+            }}
+          />
         </Link>
 
         {/* Desktop Nav */}
