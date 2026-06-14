@@ -1,194 +1,73 @@
 # Ligpit Website
 
-Premium home decluttering and organizing website for Ligpit, Berlin.  
-Built with React + Vite + Tailwind CSS.
+A calm, founder-led home and office cleaning website for Ligpit (Berlin),
+built with React + Vite + Tailwind CSS.
 
----
-
-## Quick Start
+## Local development
 
 ```bash
-# 1. Install dependencies
 npm install
-
-# 2. Run locally
 npm run dev
-
-# 3. Build for production
-npm run build
-
-# 4. Preview production build
-npm run preview
 ```
 
-The development server runs at http://localhost:5173
+Open the URL shown in the terminal (usually `http://localhost:5173`).
 
----
+## Build
 
-## File Guide — What to Edit
-
-### 1. Service names, prices, descriptions
-**`src/data/services.js`**  
-Edit `coreServices` and `addOnServices` arrays.  
-Changes here update all service cards, the Services page, and any preview sections automatically.
-
-### 2. FAQ content
-**`src/data/faqs.js`**  
-Edit the `faqs` array. Each item has `q` (question) and `a` (answer).
-
-### 3. Brand colors
-**`tailwind.config.js`** → `theme.extend.colors`  
-All colors are defined here as tokens: `charcoal`, `beige`, `olive`, `gold`, `teal`.  
-Change a color here and it updates everywhere on the site.
-
-### 4. WhatsApp number
-Search all files for: `wa.me/491234567890`  
-Replace with the real business WhatsApp number.  
-Locations: `Home.jsx`, `Pages.jsx` (Contact), `Footer.jsx`
-
-### 5. Calendly booking link
-Search all files for: `calendly.com/ligpit/discovery`  
-Replace with the real Calendly link.  
-Locations: `Home.jsx`, `Services.jsx`, `Pages.jsx` (HowItWorks, Contact), `Footer.jsx`
-
-### 6. Legal pages (Impressum + Privacy Policy)
-**`src/pages/Legal.jsx`**  
-Both pages are in this file. Each has a ⚠ Developer Note warning box.  
-Replace placeholder text with reviewed legal content before publishing.
-
-### 7. Home page copy and sections
-**`src/pages/Home.jsx`**  
-All home page sections are here. Each section is clearly commented.
-
-### 8. Navigation links
-**`src/components/Navbar.jsx`** → `navLinks` array at the top.
-
-### 9. Footer links and contact info
-**`src/components/Footer.jsx`**
-
-### 10. Global fonts
-**`index.html`** → Google Fonts link  
-**`tailwind.config.js`** → `fontFamily`  
-Currently: Cormorant Garamond (headings) + Montserrat (body)
-
----
-
-## Connect the Contact Form
-
-The contact form in `/contact` currently runs `e.preventDefault()` (no submission).  
-To activate it, choose one:
-
-**Option A — Formspree (easiest, free tier available)**
-```jsx
-// In src/pages/Pages.jsx, Contact component:
-<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-  // Remove onSubmit handler
-```
-
-**Option B — Netlify Forms**
-```jsx
-<form name="contact" method="POST" data-netlify="true">
-  <input type="hidden" name="form-name" value="contact" />
-```
-
-**Option C — Custom backend**
-```jsx
-// Add a fetch call to your API in the onSubmit handler
-const handleSubmit = async (e) => {
-  e.preventDefault()
-  const formData = new FormData(e.target)
-  await fetch('/api/contact', { method: 'POST', body: formData })
-}
-```
-
----
-
-## Deploy to Production
-
-**Vercel (recommended)**
 ```bash
-# Install Vercel CLI
-npm install -g vercel
-
-# Deploy
-vercel
-
-# Set production domain
-vercel --prod
-```
-
-Or connect your GitHub repository to Vercel at vercel.com for automatic deployments.
-
-**Netlify**
-```bash
-# Build the site
 npm run build
-
-# Upload the dist/ folder to Netlify
-# Or connect GitHub repo at netlify.com
 ```
 
-For both: the build output is in `/dist`. No server required — it's a static site.
+Output goes to `dist/`.
 
----
+## Deploying to Netlify
 
-## Project Structure
+1. Push this project to a Git repository (GitHub/GitLab/etc.), or drag the
+   `dist/` folder into Netlify's manual deploy.
+2. Build command: `npm run build`
+3. Publish directory: `dist`
 
-```
-ligpit-website/
-├── public/
-│   └── logo.png                 # Ligpit logo (PNG)
-├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx           # Top navigation
-│   │   ├── Footer.jsx           # Site footer
-│   │   └── Components.jsx       # Reusable: ServiceCard, FAQItem, PageHeader, etc.
-│   ├── data/
-│   │   ├── services.js          # ← Edit services and prices here
-│   │   └── faqs.js              # ← Edit FAQ content here
-│   ├── pages/
-│   │   ├── Home.jsx             # Home page (all sections)
-│   │   ├── Services.jsx         # Services page
-│   │   ├── Pages.jsx            # HowItWorks, About, FAQ, Contact
-│   │   ├── Legal.jsx            # Impressum, Privacy Policy
-│   │   └── [individual].jsx     # Re-export shims for routing
-│   ├── App.jsx                  # Router setup
-│   ├── main.jsx                 # React entry point
-│   └── index.css                # Global styles + Tailwind
-├── index.html                   # HTML entry + SEO + Google Fonts
-├── tailwind.config.js           # ← Brand colors and fonts here
-├── vite.config.js
-├── postcss.config.js
-└── package.json
-```
+### Netlify Forms setup
 
----
+The contact form (`src/pages/Contact.jsx`) is wired for **Netlify Forms**:
 
-## Before Publishing Checklist
+- `name="ligpit-inquiry"`, `method="POST"`, `data-netlify="true"`
+- A hidden `form-name` input
+- A honeypot field (`bot-field`) for spam protection
+- A static mirror of the form's fields lives in `public/forms.html` so
+  Netlify's build-time scanner can detect the form (required for SPAs)
 
-- [ ] Replace WhatsApp number (`wa.me/491234567890`)
-- [ ] Replace Calendly link (`calendly.com/ligpit/discovery`)
-- [ ] Complete Impressum with real legal details (reviewed by German legal advisor)
-- [ ] Complete Privacy Policy for GDPR compliance
-- [ ] Activate contact form (Formspree, Netlify Forms, or custom backend)
-- [ ] Add real before-and-after photos with client permission
-- [ ] Connect Google Analytics or Plausible if tracking is needed (update Privacy Policy)
-- [ ] Set canonical URL in `index.html`
-- [ ] Test on mobile (iPhone and Android)
-- [ ] Check all links work on the live domain
+After deploying:
 
----
+1. Go to **Site settings → Forms** in the Netlify dashboard and confirm
+   `ligpit-inquiry` is listed.
+2. Go to **Forms → Settings & notifications → Add notification → Email
+   notification**, and set it to send to **hello@ligpit.com**.
+3. If you change the fields in `Contact.jsx`, update `public/forms.html`
+   to match (same field names), so Netlify keeps tracking them correctly.
 
-## Brand Reference
+### Placeholders still needing completion after deployment
 
-| Token | Hex | Use |
-|-------|-----|-----|
-| charcoal | #2B2B2B | Main text, headers, dark sections |
-| beige | #F2EFEA | Page background |
-| olive | #6F7A63 | Primary buttons, accents |
-| gold | #B8965A | Dividers, hover states, premium details |
-| teal | #5B8A7A | Supporting accent, returning-client badge |
+- `src/pages/legal/Privacy.jsx`, Section 6 (Kontaktformular) and Section
+  10 (Hosting): replace the `[Insert final Netlify provider details / DPA
+  details ...]` placeholders with the final Netlify legal entity / DPA
+  information once available.
+- Confirm the favicon (`public/favicon.png`) and `og-image.jpg` referenced
+  in `index.html` exist in `public/` before going live.
 
-Fonts: Cormorant Garamond (headings) · Montserrat (body)
+## Recommended Ligpit workflow
 
-Email: hello@ligpit.com · Instagram: @ligpit.berlin · ligpit.com
+1. A client submits the inquiry form, or contacts Ligpit directly via
+   WhatsApp.
+2. Lily reviews the inquiry personally.
+3. Lily replies using the client's preferred contact method.
+4. If the inquiry is a serious lead, it is added to the **Ligpit Client
+   Inquiry Tracker** (a Google Sheet).
+5. Estimate and scope are confirmed manually with the client.
+6. The booking is confirmed by message or email.
+7. Payment happens after the service, by cash or bank transfer, unless
+   otherwise agreed in advance.
+
+No CRM, booking app, payment system, or customer account system is used
+at this stage — communication runs through **WhatsApp Business** and
+**hello@ligpit.com**, with the Google Sheet as the only tracking tool.
