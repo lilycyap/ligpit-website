@@ -4,6 +4,13 @@ import ServiceCard from "../components/ServiceCard";
 import Icon from "../components/Icon";
 import { coreServices, addOnServices } from "../data/services";
 
+const officeRoutineItems = [
+  "Shared kitchen / pantry surfaces",
+  "Dishwasher loading, unloading, and putting dishes back",
+  "Light coffee machine care: used grounds, removable parts, and exterior",
+  "Refilling toilet paper, hand towels, kitchen towels, and hand soap when supplies are provided",
+];
+
 export default function Services() {
   return (
     <div className="bg-cream">
@@ -25,24 +32,62 @@ export default function Services() {
           ))}
         </div>
 
+        {/* Office routine support */}
+        <div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-8 mb-16">
+          <p className="text-sm uppercase tracking-[0.2em] text-gold font-medium mb-3">
+            Office Clean
+          </p>
+          <h2 className="font-serif text-2xl sm:text-3xl text-charcoal mb-3">
+            Office routine support can be included
+          </h2>
+          <p className="text-sm text-charcoal/70 leading-relaxed max-w-3xl mb-6">
+            For small offices and workspaces, routine support tasks can be
+            included when agreed in the scope. This helps keep shared areas
+            clean, stocked, and easier to use during the working week.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {officeRoutineItems.map((item) => (
+              <div
+                key={item}
+                className="flex items-start gap-3 rounded-xl bg-cream border border-olive/10 px-4 py-3"
+              >
+                <Icon
+                  name="check"
+                  className="h-4 w-4 mt-0.5 text-olive flex-shrink-0"
+                />
+                <span className="text-sm text-charcoal/75">{item}</span>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-xs text-charcoal/50 mt-5">
+            The exact office routine depends on access, equipment, supplies,
+            office rules, and what is realistic for the session.
+          </p>
+        </div>
+
         {/* Add-ons */}
         <div>
           <h2 className="font-serif text-2xl text-charcoal text-center mb-5">
             Optional Add-ons
           </h2>
-          <p className="text-center text-sm text-charcoal/60 mb-6 max-w-xl mx-auto">
-            Optional add-ons such as oven, fridge, microwave, windows, balcony,
-            inside cabinets, laundry folding, or extra organizing are
-            estimated separately depending on the task and time required.
+          <p className="text-center text-sm text-charcoal/60 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Optional add-ons depend on the service type, scope, and time
+            required. Mention any relevant extras when booking so they can be
+            reviewed before confirming.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 lg:gap-6">
             {addOnServices.map((addon) => (
               <div
                 key={addon.id}
-                className="bg-white rounded-xl border border-olive/15 p-4"
+                className="bg-white rounded-2xl border border-olive/15 px-6 py-5"
               >
-                <p className="font-medium text-charcoal">{addon.name}</p>
-                <p className="text-sm text-charcoal/70 mt-1">
+                <p className="text-md font-medium text-charcoal">
+                  {addon.name}
+                </p>
+                <p className="text-sm text-charcoal/70 mt-2 leading-snug">
                   {addon.description}
                 </p>
               </div>
