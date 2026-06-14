@@ -27,11 +27,11 @@ export default function Services() {
 
         {/* Add-ons */}
         <div>
-          <h2 className="font-serif text-2xl text-charcoal text-center mb-2">
-            Add-ons
+          <h2 className="font-serif text-2xl text-charcoal text-center mb-5">
+            Optional Add-ons
           </h2>
           <p className="text-center text-sm text-charcoal/60 mb-6 max-w-xl mx-auto">
-            Add-ons such as oven, fridge, microwave, windows, balcony,
+            Optional add-ons such as oven, fridge, microwave, windows, balcony,
             inside cabinets, laundry folding, or extra organizing are
             estimated separately depending on the task and time required.
           </p>

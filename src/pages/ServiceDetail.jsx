@@ -36,25 +36,27 @@ export default function ServiceDetail() {
 
   return (
     <div className="bg-cream">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         {/* Service tabs */}
-        <div className="flex flex-wrap gap-2 justify-center mb-8">
-          {coreServices.map((s) => (
-            <Link
-              key={s.id}
-              to={`/services/${s.id}`}
-              className={`text-sm px-4 py-2 rounded-full border transition-colors ${
-                s.id === service.id
-                  ? "bg-olive text-cream border-olive"
-                  : "border-olive/30 text-charcoal/70 hover:border-olive"
-              }`}
-            >
-              {s.shortName}
-            </Link>
-          ))}
-        </div>
+        <div className="w-full mb-10">
+  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+    {coreServices.map((s) => (
+      <Link
+        key={s.id}
+        to={`/services/${s.id}`}
+        className={`w-full text-center text-sm sm:text-base px-5 py-3 rounded-2xl border transition-colors ${
+          s.id === service.id
+            ? "bg-olive text-cream border-olive"
+            : "bg-white/60 border-olive/20 text-charcoal/70 hover:border-olive hover:bg-white"
+        }`}
+      >
+        {s.shortName}
+      </Link>
+    ))}
+  </div>
+</div>
 
-        <div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-10">
+        <div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-10 lg:p-12">
           <div className="h-12 w-12 rounded-full bg-olive/10 flex items-center justify-center text-olive mb-5">
             <Icon name={service.icon} className="h-6 w-6" />
           </div>
@@ -158,20 +160,20 @@ export default function ServiceDetail() {
         {/* Add-ons */}
         <div className="mt-12">
           <h2 className="font-serif text-2xl text-charcoal text-center mb-6">
-            Add-on Services
+            Optional Add-on Services
           </h2>
           <p className="text-center text-sm text-charcoal/60 mb-6 max-w-xl mx-auto">
-            Add-ons are estimated separately depending on the task and time
+            Optional add-ons are estimated separately depending on the task and time
             required. Mention any of these when booking.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 lg:gap-6">
             {addOnServices.map((addon) => (
               <div
                 key={addon.id}
-                className="bg-white rounded-xl border border-olive/15 p-4"
+                className="bg-white rounded-2xl border border-olive/15 px-6 py-5"
               >
-                <p className="font-medium text-charcoal">{addon.name}</p>
-                <p className="text-sm text-charcoal/70 mt-1">
+                <p className="text-md font-medium text-charcoal">{addon.name}</p>
+                <p className="text-sm text-charcoal/70 mt-2 leading-snug">
                   {addon.description}
                 </p>
               </div>
@@ -179,7 +181,7 @@ export default function ServiceDetail() {
           </div>
         </div>
 
-        <div className="mt-10 text-center">
+          <div className="mt-14 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             to="/services"
             className="text-sm font-medium text-olive hover:text-charcoal"
