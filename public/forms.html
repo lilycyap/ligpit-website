@@ -1,0 +1,103 @@
+<!--
+  This file exists only so Netlify's build-time form detection can find
+  the "ligpit-inquiry" form and its fields. Netlify scans plain HTML
+  files in the published output for <form data-netlify="true"> tags —
+  it cannot see forms rendered by React/JSX at runtime.
+
+  This file is NOT linked from the site and is not meant to be visited
+  by users. The real, interactive form lives in src/pages/Contact.jsx.
+
+  IMPORTANT: if you add, remove, or rename fields in Contact.jsx,
+  mirror those changes here so Netlify keeps detecting the correct
+  field names for form notifications and the submissions table.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ligpit – Form detection (not a real page)</title>
+  </head>
+  <body>
+    <form name="ligpit-inquiry" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="ligpit-inquiry" />
+      <input name="bot-field" />
+
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+
+      <select name="preferredContactMethod">
+        <option>WhatsApp text</option>
+        <option>WhatsApp call</option>
+        <option>Email</option>
+        <option>Phone call</option>
+        <option>No preference</option>
+      </select>
+
+      <select name="preferredContactTime">
+        <option>Morning</option>
+        <option>Afternoon</option>
+        <option>Evening</option>
+        <option>Flexible</option>
+      </select>
+
+      <input type="text" name="area" />
+
+      <select name="service">
+        <option>Ligpit Home Clean</option>
+        <option>Ligpit First Reset Clean</option>
+        <option>Ligpit Office Clean</option>
+        <option>Ligpit Light Organizing</option>
+        <option>Add-ons</option>
+        <option>Not sure yet</option>
+      </select>
+
+      <select name="spaceType">
+        <option>Home</option>
+        <option>Office</option>
+        <option>Studio / treatment room</option>
+        <option>Coworking room</option>
+        <option>Other workspace</option>
+      </select>
+
+      <input type="text" name="size" />
+      <input type="text" name="timing" />
+
+      <select name="officeTiming">
+        <option>Before office hours</option>
+        <option>After office hours</option>
+        <option>During office hours, only if quiet or empty</option>
+        <option>Flexible / to be discussed</option>
+        <option>Not applicable</option>
+      </select>
+
+      <select name="frequency">
+        <option>One-time</option>
+        <option>First reset</option>
+        <option>Weekly</option>
+        <option>Biweekly</option>
+        <option>Monthly</option>
+        <option>Not sure yet</option>
+      </select>
+
+      <input type="text" name="focusAreas" />
+      <textarea name="priorities"></textarea>
+
+      <select name="supplies">
+        <option>Yes</option>
+        <option>No</option>
+        <option>Not sure</option>
+      </select>
+
+      <input type="radio" name="photoConsent" value="Internal records only" />
+      <input type="radio" name="photoConsent" value="Photos/videos may be used for marketing without personal or identifying details" />
+      <input type="radio" name="photoConsent" value="Photos only for internal records" />
+      <input type="radio" name="photoConsent" value="No photos/videos" />
+
+      <textarea name="message"></textarea>
+      <input type="checkbox" name="contactConsent" />
+
+      <button type="submit">Send Inquiry</button>
+    </form>
+  </body>
+</html>
