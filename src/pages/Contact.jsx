@@ -413,6 +413,27 @@ export default function Contact() {
                 </div>
               </fieldset>
 
+              {/* ── Share space photos for booking ───────────────── */}
+              <div>
+                <label
+                  htmlFor="shareSpacePhotos"
+                  className="block text-sm font-medium text-charcoal mb-1"
+                >
+                  Would you be open to sharing photos or videos of your
+                  space later if needed?
+                </label>
+                <select
+                  id="shareSpacePhotos"
+                  name="shareSpacePhotos"
+                  className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                >
+                  <option>Yes, by WhatsApp</option>
+                  <option>Yes, by email</option>
+                  <option>No, I prefer not to share photos/videos</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+
               {/* ── Message ──────────────────────────────────────── */}
               <div>
                 <label

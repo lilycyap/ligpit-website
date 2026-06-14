@@ -17,37 +17,39 @@ export default function About() {
         </div>
 
         <div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-10">
-          <div className="flex flex-col md:flex-row gap-8 items-center md:items-stretch mb-12">
+          <div className="flex flex-col md:flex-row gap-8 items-center md:items-stretch mb-8">
             {/* Photo — taller, left on desktop, above text on mobile */}
             <div className="w-full md:w-2/5 flex-shrink-0">
               <div className="rounded-2xl overflow-hidden border border-olive/20 h-64 sm:h-80 md:h-full">
                 <img
                   src="/lily.png"
-                  alt="Lily, founder of Ligpit"
+                  alt="Lily Yap, founder of Ligpit"
                   className="h-full w-full object-cover"
                 />
               </div>
-              <p className="text-s text-charcoal/40 mt-2 text-center md:text-left">
+              <p className="text-xs text-charcoal/40 mt-2 text-center md:text-left">
                 Lily Yap, founder of Ligpit
               </p>
             </div>
 
             {/* Text */}
-            <div className="md:w-4/5 flex flex-col justify-center">
+            <div className="md:w-3/5 flex flex-col justify-center">
               <h2 className="font-serif text-2xl text-charcoal mb-3">
                 Hi, I'm Lily.
               </h2>
               <p className="text-charcoal/80 leading-relaxed">
-                Ligpit is a personal cleaning and home reset service in Berlin.
-                The word "Ligpit" comes from Tagalog word and can mean to tidy up,
-                put things away, clear away, or restore order.
-              </p>  
+                Ligpit is a personal cleaning and reset service for homes
+                and workspaces in Berlin. The word "Ligpit" comes from
+                Tagalog and can mean to tidy up, put things away, clear
+                away, or restore order.
+              </p>
               <p className="text-charcoal/80 leading-relaxed mt-3">
-  		I started Ligpit because I know how quickly a space can become
-  		overwhelming when life is full — work, family, moving, health,
- 		or simply not having enough time. Sometimes what people need is
-  		not judgment or pressure, but calm, practical help.
-	      </p>
+                I started Ligpit because I know how quickly a space can
+                become overwhelming when life is full — work, family,
+                moving, busy seasons, or simply not having enough time.
+                Sometimes what people need is not judgment or pressure,
+                but calm, practical help.
+              </p>
               <p className="text-charcoal/80 leading-relaxed mt-3">
                 For this service, Ligpit means helping your home, office,
                 or workspace feel cleaner, calmer, and easier to manage —
@@ -56,13 +58,17 @@ export default function About() {
             </div>
           </div>
 
-          <div className="border-t border-olive/15 mt-8 pt-6">
+          <div className="border-t border-olive/15 pt-6">
             <h3 className="font-serif text-xl text-charcoal mb-2">
-              Why Ligpit feels different
+              How Ligpit works
             </h3>
             <p className="text-sm text-charcoal/75 leading-relaxed">
-              There is no call center, no rotating staff, and no one-size-fits-all
-              checklist. Ligpit follows a clear method, but every session is shaped around your space, your priorities, and what can realistically be done in the time available. The goal is not a perfect show home. It is a space that feels cleaner, calmer, and easier to live or work in.
+              Ligpit follows a clear method, but not a one-size-fits-all
+              checklist. Every session is shaped around your space, your
+              priorities, and what can realistically be done in the time
+              available. The goal is not a perfect show home. It is a
+              space that feels cleaner, calmer, and easier to live or
+              work in.
             </p>
           </div>
         </div>

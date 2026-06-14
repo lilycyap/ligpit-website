@@ -56,8 +56,7 @@ export default function Impressum() {
           <div>
             <h2 className="font-semibold text-charcoal mb-1">Versicherung</h2>
             <p className="mb-2">
-              Ligpit holds business liability insurance with ERGO
-              Versicherung AG.
+              Ligpit verfügt über eine Gewerbe-Haftpflichtversicherung bei:
             </p>
             <p>ERGO Versicherung AG</p>
             <p>ERGO-Platz 1</p>
@@ -65,20 +64,19 @@ export default function Impressum() {
             <p>Germany</p>
             <p className="mt-2">
               <span className="font-medium text-charcoal">
-                Type of insurance:
+                Art der Versicherung:
               </span>{" "}
               Gewerbe-Haftpflichtversicherung
             </p>
             <p>
               <span className="font-medium text-charcoal">
-                Insured risk:
+                Versichertes Risiko:
               </span>{" "}
               Haushaltshilfendienst
             </p>
             <p className="mt-2">
-              Coverage is subject to the terms and conditions of the
-              insurance policy. Further details can be provided upon
-              request.
+              Der Versicherungsschutz richtet sich nach den Bedingungen des Versicherungsvertrags. 
+		Weitere Informationen können auf Anfrage bereitgestellt werden.
             </p>
           </div>
 
@@ -94,10 +92,9 @@ export default function Impressum() {
           </div>
 
           <div className="border-t border-olive/15 pt-4">
-            <p className="text-xs text-charcoal/50">
-              English note: This Impressum (legal notice) is provided in
-              accordance with German law (§ 5 DDG and § 18 (2) MStV). The
-              German version above is the legally binding version.
+            <p className="text-xs text-charcoal/60">
+              English note: This Impressum (legal notice) is provided in accordance with German law 
+		(§ 5 DDG and § 18 Abs. 2 MStV). The German version above is the legally binding version.
             </p>
           </div>
         </div>

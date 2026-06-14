@@ -140,9 +140,7 @@ export default function Privacy() {
 
           <Section n={4} deTitle="Zwecke der Verarbeitung">
             <p>
-              	Die erhobenen Daten werden insbesondere zur Bearbeitung Ihrer Anfrage,
-  		zur Erstellung einer Schätzung, zur Terminabstimmung, zur allgemeinen
-  		eschäftskommunikation sowie zum sicheren Betrieb der Website verwendet.
+              	Die erhobenen Daten werden insbesondere zur Bearbeitung Ihrer Anfrage, zur Erstellung einer Schätzung, zur Terminabstimmung, zur allgemeinen 				Geschäftskommunikation sowie zum sicheren Betrieb der Website verwendet.
             </p>
             <EN>
               	The data collected is mainly used to process your inquiry, prepare an
@@ -190,8 +188,7 @@ export default function Privacy() {
               um Ihre Anfrage zu bearbeiten.
             </p>
             <p className="mt-2 text-charcoal/60">
-              [Insert final Netlify provider details / DPA details after
-              Netlify account setup.]
+              Anbieter: Netlify, Inc. und/oder verbundene Unternehmen. Die Verarbeitung im Auftrag richtet sich nach den jeweils geltenden Vereinbarungen und 			Datenschutzbedingungen von Netlify.
             </p>
             <EN>
               The contact form is provided via Netlify Forms / Netlify
@@ -259,8 +256,7 @@ export default function Privacy() {
               erforderlich (Art. 6 Abs. 1 lit. f DSGVO).
             </p>
             <p className="mt-2 text-charcoal/60">
-              [Insert final Netlify hosting provider details after
-              deployment setup.]
+              Hosting-Anbieter: Netlify, Inc. und/oder verbundene Unternehmen.
             </p>
             <EN>
               This website is hosted via Netlify. When you visit the
@@ -274,33 +270,33 @@ export default function Privacy() {
 
           <Section n={11} deTitle="Cookies und Tracking">
             <p>
-              Diese Website kann auf externe Social-Media-Profile von Ligpit
-    	verlinken, zum Beispiel Instagram und Facebook. Es werden keine
-    	Instagram- oder Facebook-Feeds in diese Website eingebettet. Beim
-    	Anklicken eines solchen Links verlassen Sie diese Website; es gelten
-    	die Datenschutzbestimmungen der jeweiligen Plattform.
+              Diese Website verwendet derzeit keine Analyse-Tools, keine Marketing-Pixel, 
+		keine eingebetteten Karten, keine Buchungs-Widgets und keine nicht notwendigen Cookies. 
+		Sollte sich dies künftig ändern, wird diese Datenschutzerklärung sowie ggf. erforderliche 
+		Einwilligungseinstellungen vor der Aktivierung solcher Tools aktualisiert.
+
             </p>
             <EN>
-              This website may link to Ligpit's external social media profiles, such
-    	as Instagram and Facebook. No Instagram or Facebook feeds are embedded
-    	on this website. If you click one of these links, you leave this website
-    	and the privacy terms of the respective platform apply.
+              This website does not currently use analytics tools, marketing pixels, 
+		embedded maps, booking widgets, or non-essential cookies. If this changes in the future, 
+		this privacy policy and any required consent settings will be updated before those tools are activated.
+
             </EN>
           </Section>
 
           <Section n={12} deTitle="Externe Links, z. B. Instagram und Facebook">
             <p>
-              Diese Website kann auf das Instagram-Profil von Ligpit
-              verlinken. Es wird kein Instagram-Feed in die Website
-              eingebettet. Beim Anklicken eines solchen Links verlassen Sie
-              diese Website; es gelten die Datenschutzbestimmungen von
-              Instagram / Meta.
+              Diese Website kann auf externe Social-Media-Profile von Ligpit verlinken, 
+	zum Beispiel Instagram und Facebook. Es werden keine Instagram- oder Facebook-Feeds 
+	in diese Website eingebettet. Beim Anklicken eines solchen Links verlassen Sie diese Website; 
+	es gelten die Datenschutzbestimmungen der jeweiligen Plattform.
+
             </p>
             <EN>
-              This website may link to Ligpit's Instagram profile. No
-              Instagram feed is embedded on the website. Clicking such a
-              link takes you to Instagram, where Instagram's / Meta's own
-              privacy terms apply.
+              This website may link to Ligpit’s external social media profiles, 
+	such as Instagram and Facebook. No Instagram or Facebook feeds are embedded on this website. 
+	If you click one of these links, you leave this website and the privacy terms of the respective platform apply.
+
             </EN>
           </Section>
 
@@ -318,14 +314,12 @@ export default function Privacy() {
     		E-Mail-Anbieter: Namecheap Private Email
   		</p>
             <EN>
-              Personal data is only shared with recipients where necessary to process
-    	your inquiry, provide the website technically, or communicate with you.
-    	This may include the hosting and form provider Netlify, the email
-    	provider, and WhatsApp / Meta if you contact us via WhatsApp. Data is
-    	not shared with other third parties unless required by law.
+              Personal data is only shared with recipients where necessary to process 
+		your inquiry, provide the website technically, or communicate with you. This may include the 
+		hosting and form provider Netlify, the email provider Namecheap Private Email, and WhatsApp / 
+		Meta if you contact us via WhatsApp. Data is not shared with other third parties unless required by law.
             </EN>
-	<EN>Email provider: Namecheap Private Email</EN>
-          </Section>
+	  </Section>
 
           <Section n={14} deTitle="Speicherdauer">
             <p>

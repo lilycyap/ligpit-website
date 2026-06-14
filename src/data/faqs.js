@@ -36,6 +36,18 @@ export const faqs = [
   },
   {
     category: "Booking & Availability",
+    question: "Can we discuss my inquiry by call?",
+    answer:
+      "Yes. If a short call would help clarify the space, priorities, timing, or office-cleaning details, Lily can arrange a WhatsApp or phone call after reviewing your inquiry. Text or email is also fine if you prefer that.",
+  },
+  {
+    category: "Booking & Availability",
+    question: "Can I book a session for someone else?",
+    answer:
+      "Yes, in some cases. Please make sure the person receiving the service knows about the booking and agrees to it. Access, priorities, payment, and any photo/video consent must be clear before the session is confirmed.",
+  },
+  {
+    category: "Booking & Availability",
     question: "What areas of Berlin do you serve?",
     answer:
       "Ligpit currently serves Berlin, with focus on central and reachable areas. Please mention your neighborhood when sending an inquiry.",
@@ -89,6 +101,30 @@ export const faqs = [
     question: "Do you offer oven or fridge cleaning?",
     answer:
       "Yes, oven, fridge, and microwave cleaning can be requested as add-ons. These should be mentioned before booking so enough time can be planned.",
+  },
+  {
+    category: "Services & Scope",
+    question: "What if the service I need is not listed?",
+    answer:
+      "If your request is not listed, you can still send an inquiry and describe what you need. Lily will review whether it fits within Ligpit's cleaning and light organizing scope. If the request is outside the service scope, unsafe, or requires a specialist, Lily will let you know honestly before anything is confirmed.",
+  },
+  {
+    category: "Services & Scope",
+    question: "How long does a session usually take?",
+    answer:
+      "The time needed depends on the size, condition, priorities, and type of service. First reset sessions usually take longer than regular maintenance cleaning. Before confirming, Lily will review your request and give an honest estimate of the time likely needed.",
+  },
+  {
+    category: "Services & Scope",
+    question: "Do I need to tidy up before you arrive?",
+    answer:
+      "No perfect preparation is needed. If possible, please make sure important personal items, documents, or valuables are kept safely aside. The session will focus on the priorities agreed in advance.",
+  },
+  {
+    category: "Services & Scope",
+    question: "Can you help organize paperwork?",
+    answer:
+      "Light paperwork sorting may be possible, such as grouping papers, creating simple categories, or helping make an area easier to manage. Ligpit does not make legal, financial, tax, or personal decisions about documents, and nothing is thrown away without your consent.",
   },
 
   // ── CATEGORY 3: Pricing & Estimates ──────────────────────────────
@@ -191,6 +227,24 @@ export const faqs = [
     category: "Privacy, Photos & Trust",
     question: "Will you throw away my things?",
     answer: "No. Nothing is discarded without your consent.",
+  },
+  {
+    category: "Privacy, Photos & Trust",
+    question: "Can I be home while you work?",
+    answer:
+      "Yes. You can be home during the session if that feels more comfortable. Some clients prefer to be present at the start to explain priorities, then continue with their day while the work is done.",
+  },
+  {
+    category: "Privacy, Photos & Trust",
+    question: "What if I feel embarrassed about my space?",
+    answer:
+      "You do not need to feel embarrassed. Real homes and workspaces get messy, especially during busy or difficult seasons. Ligpit focuses on practical help, clear priorities, and respectful support — not judgment.",
+  },
+  {
+    category: "Privacy, Photos & Trust",
+    question: "Can I send photos or videos of my space before booking?",
+    answer:
+      "Yes, if you feel comfortable. Photos or videos can help Lily understand the space, priorities, and estimated time needed. You can send them later by WhatsApp or email after your inquiry. Please avoid including personal documents, faces, children, valuables, or sensitive private details whenever possible. Nothing is shared publicly without your explicit permission.",
   },
 
   // ── CATEGORY 7: Payment, Cancellation & Aftercare ────────────────
