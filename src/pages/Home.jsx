@@ -261,65 +261,79 @@ export default function Home() {
           ============================================================ */}
       <TrustSection />
 
-      {/* ============================================================
-          EARLY CLIENT FEEDBACK
-          ============================================================ */}
-      <section className="bg-cream">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold font-medium mb-3">
-              FROM FIRST CLIENTS
-            </p>
-            <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
-              Early Feedback
-            </h2>
-            <p className="mt-3 text-sm text-charcoal/70 leading-relaxed">
-              Ligpit is still a young service, but early client feedback has
-              been encouraging. Feedback is collected after sessions to
-              understand what worked well and how the service can improve.
-            </p>
-          </div>
+     {/* ============================================================
+    EARLY CLIENT FEEDBACK
+    ============================================================ */}
+<section className="bg-cream">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    <div className="text-center max-w-2xl mx-auto mb-10">
+      <p className="text-sm uppercase tracking-[0.2em] text-gold font-medium mb-3">
+        FROM FIRST CLIENTS
+      </p>
+      <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
+        Early Feedback
+      </h2>
+      <p className="mt-3 text-sm text-charcoal/70 leading-relaxed">
+        Ligpit is still a young service, but early client feedback has
+        been encouraging. Feedback is collected after sessions to
+        understand what worked well and how the service can improve.
+      </p>
+    </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Quote card */}
-            <div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-8 flex flex-col">
-              <p className="text-charcoal/80 leading-relaxed italic flex-1">
-                &ldquo;Lily&apos;s communication was incredible. She did
-                everything she said she&apos;d do and more. I trusted her
-                immediately and left her alone in my apartment. Can&apos;t
-                wait for next visit.&rdquo;
-              </p>
-              <p className="text-sm font-medium text-charcoal mt-6">
-                — Georgia, home cleaning client
-              </p>
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Georgia quote card */}
+      <div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-8 flex flex-col">
+        <p className="text-charcoal/80 leading-relaxed italic flex-1">
+          &ldquo;Lily&apos;s communication was incredible. She did
+          everything she said she&apos;d do and more. I trusted her
+          immediately and left her alone in my apartment. Can&apos;t
+          wait for next visit.&rdquo;
+        </p>
+        <p className="text-sm font-medium text-charcoal mt-6">
+          — Georgia, home cleaning client
+        </p>
+      </div>
 
-            {/* Feedback summary card */}
-            <div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-8">
-              <h3 className="font-serif text-lg text-charcoal mb-4">
-                Early feedback notes
-              </h3>
-              <ul className="space-y-2.5">
-                {feedbackNotes.map((note) => (
-                  <li
-                    key={note}
-                    className="flex items-start gap-2.5 text-sm text-charcoal/80"
-                  >
-                    <Icon
-                      name="check"
-                      className="h-4 w-4 mt-0.5 text-olive flex-shrink-0"
-                    />
-                    <span>{note}</span>
-                  </li>
-                ))}
-              </ul>
-              </div>
-          </div>
-		 <p className="md:col-span-2 text-s text-charcoal/50 text-center mt-6">
-    Shared only with client permission.
-  </p>      
-	</div>
-      </section>
+      {/* Angelica quote card */}
+      <div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-8 flex flex-col">
+        <p className="text-charcoal/80 leading-relaxed italic flex-1">
+          &ldquo;Ms. Lily is consistently professional, systematic, and
+          clearly knows what she&apos;s doing. She respects people&apos;s
+          time, listens to my wishes for my home, and treats my place
+          with care. Highly recommended!&rdquo;
+        </p>
+        <p className="text-sm font-medium text-charcoal mt-6">
+          — Angelica, home cleaning client
+        </p>
+      </div>
+
+      {/* Feedback summary card */}
+      <div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-8 md:col-span-2 lg:col-span-1">
+        <h3 className="font-serif text-lg text-charcoal mb-4">
+          Early feedback notes
+        </h3>
+        <ul className="space-y-2.5">
+          {feedbackNotes.map((note) => (
+            <li
+              key={note}
+              className="flex items-start gap-2.5 text-sm text-charcoal/80"
+            >
+              <Icon
+                name="check"
+                className="h-4 w-4 mt-0.5 text-olive flex-shrink-0"
+              />
+              <span>{note}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <p className="text-xs text-charcoal/50 text-center mt-8">
+      Shared only with client permission.
+    </p>
+  </div>
+</section>
 
       {/* ============================================================
           FINAL CTA SECTION
