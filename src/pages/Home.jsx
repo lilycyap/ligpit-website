@@ -295,17 +295,27 @@ export default function Home() {
       </div>
 
       {/* Angelica quote card */}
-      <div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-8 flex flex-col">
-        <p className="text-charcoal/80 leading-relaxed italic flex-1">
-          &ldquo;Ms. Lily is consistently professional, systematic, and
-          clearly knows what she&apos;s doing. She respects people&apos;s
-          time, listens to my wishes for my home, and treats my place
-          with care. Highly recommended!&rdquo;
-        </p>
-        <p className="text-sm font-medium text-charcoal mt-6">
-          — Angelica, home cleaning client
-        </p>
-      </div>
+	<div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-8 flex flex-col">
+  	<p className="text-charcoal/80 leading-relaxed italic flex-1">
+   	 &ldquo;I really admire Ms. Lily&apos;s consistent professionalism and her
+    	systematic and expertise on the job. She literally knows what she&apos;s
+    	doing and shares the rationale behind her system.
+    	<br />
+    	<br />
+    	She respects people&apos;s time, and my wishes for my home and treats my
+    	place with care. ❣️
+    	<br />
+   	 <br />
+   	 It&apos;s not easy to find someone who&apos;s as professional and as good
+   	 as she is in Berlin.
+    	<br />
+   	 <br />
+    	Highly recommended! ✨️&rdquo;
+  	</p>
+  	<p className="text-sm font-medium text-charcoal mt-6">
+   	 — Angelica, home cleaning client
+  	</p>
+	</div>
 
       {/* Feedback summary card */}
       <div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-8 md:col-span-2 lg:col-span-1">
