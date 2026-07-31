@@ -43,6 +43,14 @@ const elevatorOptions = [
   "Not applicable",
 ];
 
+const inquiryChatOptions = [
+  "Written form is enough",
+  "WhatsApp chat preferred",
+  "Email exchange preferred",
+  "Short call only if needed",
+  "Not sure yet",
+];
+
 const focusAreaOptions = [
   "Kitchen",
   "Bathroom",
@@ -74,9 +82,21 @@ const priorityOptions = [
   "Not sure yet — I need advice",
 ];
 
+const chatAppointmentChoices = [
+  "WhatsApp chat preferred",
+  "Email exchange preferred",
+  "Short call only if needed",
+];
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
+  const [inquiryChatPreference, setInquiryChatPreference] = useState(
+    "Written form is enough"
+  );
+
+  const showChatAppointmentFields =
+    chatAppointmentChoices.includes(inquiryChatPreference);
 
   function encode(data) {
     return Object.keys(data)
@@ -97,6 +117,12 @@ export default function Contact() {
     data.focusAreas = formData.getAll("focusAreas").join(", ");
     data.mainPriorities = formData.getAll("mainPriorities").join(", ");
 
+    if (!showChatAppointmentFields) {
+      data.preferredChatDate = "";
+      data.preferredChatTime = "";
+      data.chatTimingNotes = "";
+    }
+
     try {
       await fetch("/", {
         method: "POST",
@@ -111,22 +137,22 @@ export default function Contact() {
 
   return (
     <div className="bg-cream">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
         <div className="text-center max-w-3xl mx-auto mb-10">
           <p className="text-sm uppercase tracking-[0.2em] text-gold font-medium mb-3">
             Get in touch
           </p>
-          <h1 className="font-serif text-4xl text-charcoal">
+          <h1 className="font-serif text-3xl sm:text-4xl text-charcoal">
             Request Availability
           </h1>
-          <p className="mt-3 text-charcoal/70">
+          <p className="mt-3 text-sm sm:text-base text-charcoal/70">
             Tell Lily a little about your home, office, or workspace. Booking
             is not instant — every inquiry is reviewed personally so the scope,
             priorities, and estimate are clear before confirming.
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl border border-olive/15 p-6 sm:p-8 lg:p-10 mb-8">
+        <div className="bg-white rounded-2xl border border-olive/15 p-5 sm:p-8 lg:p-10 mb-8">
           {submitted ? (
             <div className="text-center py-10">
               <h2 className="font-serif text-2xl text-charcoal mb-2">
@@ -256,6 +282,98 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* ── Inquiry chat preference ──────────────────────── */}
+              <fieldset className="rounded-2xl border border-olive/15 bg-cream/30 p-5">
+                <legend className="px-2 text-sm font-medium text-charcoal">
+                  Inquiry chat preference
+                </legend>
+
+                <p className="text-xs text-charcoal/60 mb-4">
+                  This is for inquiry and planning only. Cleaning sessions are
+                  confirmed separately after Lily reviews the details.
+                </p>
+
+                <div>
+                  <label
+                    htmlFor="inquiryChatPreference"
+                    className="block text-sm font-medium text-charcoal mb-1"
+                  >
+                    Would you like a short inquiry chat?
+                  </label>
+                  <select
+                    id="inquiryChatPreference"
+                    name="inquiryChatPreference"
+                    value={inquiryChatPreference}
+                    onChange={(e) => setInquiryChatPreference(e.target.value)}
+                    className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                  >
+                    {inquiryChatOptions.map((option) => (
+                      <option key={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {showChatAppointmentFields && (
+                  <div className="mt-5 rounded-xl border border-olive/10 bg-white/70 p-4">
+                    <p className="text-sm font-medium text-charcoal mb-1">
+                      Preferred inquiry chat date and time
+                    </p>
+                    <p className="text-xs text-charcoal/60 mb-4">
+                      Select a preferred date and time for your inquiry chat.
+                      This is a request only and will be confirmed personally.
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label
+                          htmlFor="preferredChatDate"
+                          className="block text-sm font-medium text-charcoal mb-1"
+                        >
+                          Preferred chat date
+                        </label>
+                        <input
+                          id="preferredChatDate"
+                          name="preferredChatDate"
+                          type="date"
+                          className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="preferredChatTime"
+                          className="block text-sm font-medium text-charcoal mb-1"
+                        >
+                          Preferred chat time
+                        </label>
+                        <input
+                          id="preferredChatTime"
+                          name="preferredChatTime"
+                          type="time"
+                          className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="mt-4">
+                      <label
+                        htmlFor="chatTimingNotes"
+                        className="block text-sm font-medium text-charcoal mb-1"
+                      >
+                        Other chat timing notes
+                      </label>
+                      <input
+                        id="chatTimingNotes"
+                        name="chatTimingNotes"
+                        type="text"
+                        placeholder="e.g. weekday evening, flexible, after 18:00"
+                        className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                      />
+                    </div>
+                  </div>
+                )}
+              </fieldset>
+
               <div>
                 <label
                   htmlFor="area"
@@ -270,6 +388,35 @@ export default function Contact() {
                   placeholder="e.g. Neukölln, Kreuzberg"
                   className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
                 />
+              </div>
+
+              {/* ── Location / travel screening ──────────────────── */}
+              <div>
+                <label
+                  htmlFor="locationFit"
+                  className="block text-sm font-medium text-charcoal mb-1"
+                >
+                  Location / travel fit
+                </label>
+                <select
+                  id="locationFit"
+                  name="locationFit"
+                  className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                >
+                  <option>Near Hermannplatz</option>
+                  <option>
+                    Within easy reach of Hermannplatz by public transport
+                  </option>
+                  <option>Further within Berlin</option>
+                  <option>Outside Berlin</option>
+                  <option>Not sure</option>
+                </select>
+                <p className="mt-1 text-xs text-charcoal/50">
+                  Ligpit is based around the Hermannplatz area. For locations
+                  further away, difficult to access, or requiring extra travel
+                  time, a travel/access fee may apply and will be included in
+                  the estimate before confirmation.
+                </p>
               </div>
 
               {/* ── Service & space details ─────────────────────── */}
@@ -490,21 +637,66 @@ export default function Contact() {
                 </div>
               </fieldset>
 
-              <div>
-                <label
-                  htmlFor="timing"
-                  className="block text-sm font-medium text-charcoal mb-1"
-                >
-                  Preferred date or timing
-                </label>
-                <input
-                  id="timing"
-                  name="timing"
-                  type="text"
-                  placeholder="e.g. next week, weekday mornings"
-                  className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
-                />
-              </div>
+              {/* ── Preferred cleaning session date and time ─────── */}
+              <fieldset className="rounded-2xl border border-olive/15 bg-cream/30 p-5">
+                <legend className="px-2 text-sm font-medium text-charcoal">
+                  Preferred cleaning session date and time
+                </legend>
+
+                <p className="text-xs text-charcoal/60 mb-4">
+                  Select your preferred date and start time for the cleaning
+                  session. This is not an automatic booking. Final availability,
+                  scope, and estimate are confirmed personally.
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label
+                      htmlFor="preferredCleaningDate"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Preferred cleaning date
+                    </label>
+                    <input
+                      id="preferredCleaningDate"
+                      name="preferredCleaningDate"
+                      type="date"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="preferredCleaningTime"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Preferred cleaning start time
+                    </label>
+                    <input
+                      id="preferredCleaningTime"
+                      name="preferredCleaningTime"
+                      type="time"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <label
+                    htmlFor="cleaningTimingNotes"
+                    className="block text-sm font-medium text-charcoal mb-1"
+                  >
+                    Other cleaning timing notes
+                  </label>
+                  <input
+                    id="cleaningTimingNotes"
+                    name="cleaningTimingNotes"
+                    type="text"
+                    placeholder="e.g. next week, weekday mornings, flexible"
+                    className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                  />
+                </div>
+              </fieldset>
 
               <div>
                 <label

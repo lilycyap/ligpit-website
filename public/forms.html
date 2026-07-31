@@ -46,7 +46,27 @@
         <option>Flexible</option>
       </select>
 
+      <select name="inquiryChatPreference">
+        <option>Written form is enough</option>
+        <option>WhatsApp chat preferred</option>
+        <option>Email exchange preferred</option>
+        <option>Short call only if needed</option>
+        <option>Not sure yet</option>
+      </select>
+
+      <input type="date" name="preferredChatDate" />
+      <input type="time" name="preferredChatTime" />
+      <input type="text" name="chatTimingNotes" />
+
       <input type="text" name="area" />
+
+      <select name="locationFit">
+        <option>Near Hermannplatz</option>
+        <option>Within easy reach of Hermannplatz by public transport</option>
+        <option>Further within Berlin</option>
+        <option>Outside Berlin</option>
+        <option>Not sure</option>
+      </select>
 
       <select name="service">
         <option>Ligpit Home Clean</option>
@@ -143,7 +163,10 @@
       </select>
 
       <input type="text" name="size" />
-      <input type="text" name="timing" />
+
+      <input type="date" name="preferredCleaningDate" />
+      <input type="time" name="preferredCleaningTime" />
+      <input type="text" name="cleaningTimingNotes" />
 
       <select name="officeTiming">
         <option>Before office hours</option>
@@ -205,7 +228,11 @@
         value="Vacuuming and mopping floors"
       />
       <input type="checkbox" name="mainPriorities" value="Laundry folding" />
-      <input type="checkbox" name="mainPriorities" value="Preparing for guests" />
+      <input
+        type="checkbox"
+        name="mainPriorities"
+        value="Preparing for guests"
+      />
       <input
         type="checkbox"
         name="mainPriorities"
