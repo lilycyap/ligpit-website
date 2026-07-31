@@ -27,7 +27,10 @@ export default function Impressum() {
             <h2 className="font-semibold text-charcoal mb-1">Kontakt</h2>
             <p>
               Telefon / WhatsApp:{" "}
-              <a href="tel:+4915158845018" className="text-olive hover:text-charcoal">
+              <a
+                href="tel:+4915158845018"
+                className="text-olive hover:text-charcoal"
+              >
                 +49 151 58845018
               </a>
             </p>
@@ -40,6 +43,14 @@ export default function Impressum() {
                 hello@ligpit.com
               </a>
             </p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-charcoal mb-1">
+              Wirtschafts-Identifikationsnummer
+            </h2>
+            <p>Wirtschafts-Identifikationsnummer gemäß § 5 DDG:</p>
+            <p>DE463733967</p>
           </div>
 
           <div>
@@ -75,8 +86,9 @@ export default function Impressum() {
               Haushaltshilfendienst
             </p>
             <p className="mt-2">
-              Der Versicherungsschutz richtet sich nach den Bedingungen des Versicherungsvertrags. 
-		Weitere Informationen können auf Anfrage bereitgestellt werden.
+              Der Versicherungsschutz richtet sich nach den Bedingungen des
+              Versicherungsvertrags. Weitere Informationen können auf Anfrage
+              bereitgestellt werden.
             </p>
           </div>
 
@@ -86,15 +98,16 @@ export default function Impressum() {
             </h2>
             <p>
               Wir sind nicht verpflichtet und nicht bereit, an
-              Streitbeilegungsverfahren vor einer
-              Verbraucherschlichtungsstelle teilzunehmen.
+              Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+              teilzunehmen.
             </p>
           </div>
 
           <div className="border-t border-olive/15 pt-4">
             <p className="text-xs text-charcoal/60">
-              English note: This Impressum (legal notice) is provided in accordance with German law 
-		(§ 5 DDG and § 18 Abs. 2 MStV). The German version above is the legally binding version.
+              English note: This Impressum (legal notice) is provided in
+              accordance with German law (§ 5 DDG and § 18 Abs. 2 MStV). The
+              German version above is the legally binding version.
             </p>
           </div>
         </div>

@@ -147,6 +147,12 @@ export const faqs = [
   },
   {
     category: "Pricing & Estimates",
+    question: "Does it matter if there is no elevator?",
+    answer:
+      "Yes. Please mention if the space is in a walk-up building, which floor it is on, and whether there is an elevator. Stairs, building access, parking, and how much equipment needs to be carried can affect the time, energy, and estimate. For higher floors without an elevator, the session may need lighter equipment or a more focused scope.",
+  },
+  {
+    category: "Pricing & Estimates",
     question: "Are add-ons included automatically?",
     answer:
       "No. Add-ons are estimated separately and should be mentioned before booking so time can be planned properly.",
@@ -209,7 +215,7 @@ export const faqs = [
     category: "Privacy, Photos & Trust",
     question: "What are the photo/video consent options?",
     answer:
-      "You can choose one of four options: internal records only, photos/videos may be used for marketing without personal or identifying details, photos only for internal records, or no photos/videos.",
+      "Before any photos or videos are used beyond internal planning, Lily will ask for clear permission. You can choose whether photos or videos are for internal reference only, whether they may be used for marketing without identifying details, or whether you prefer no photos or videos at all.",
   },
   {
     category: "Privacy, Photos & Trust",
@@ -246,7 +252,12 @@ export const faqs = [
     answer:
       "Yes, if you feel comfortable. Photos or videos can help Lily understand the space, priorities, and estimated time needed. You can send them later by WhatsApp or email after your inquiry. Please avoid including personal documents, faces, children, valuables, or sensitive private details whenever possible. Nothing is shared publicly without your explicit permission.",
   },
-
+  {
+    category: "Privacy, Photos & Trust",
+    question: "Can I upload photos or videos through the website?",
+    answer:
+      "Not at the moment. To keep things simple and privacy-conscious, photos or videos can be shared after the first inquiry by WhatsApp or email if needed. They are used only to understand the space, priorities, and estimated time, and are not published without clear permission.",
+  },
   // ── CATEGORY 7: Payment, Cancellation & Aftercare ────────────────
   {
     category: "Payment, Cancellation & Aftercare",
