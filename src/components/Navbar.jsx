@@ -8,7 +8,7 @@ const navLinks = [
   { to: "/pricing", label: "Pricing & Estimates" },
   { to: "/how-it-works", label: "How It Works" },
   { to: "/about", label: "About" },
-  { to: "/#feedback", label: "Feedback" },
+  { to: "/#feedback", label: "Feedback", anchor: true },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
 ];
@@ -32,32 +32,34 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-	  <nav className="hidden md:flex items-center gap-6">
-  	    {navLinks.map((link) =>
-    	      link.to.includes("#") ? (
-      	        <Link
-        	   key={link.to}
-        	   to={link.to}
-        	   className="text-sm font-medium transition-colors text-charcoal/80 hover:text-olive"
-      	        >
-        	   {link.label}
-      	         </Link>
-    	       ) : (
-      	         <NavLink
-                   key={link.to}
-                   to={link.to}
-                   end
-       	           className={({ isActive }) =>
-          `           text-sm font-medium transition-colors ${
-                       isActive ? "text-olive" : "text-charcoal/80 hover:text-olive"
-                     }`
-                   }
-      	     	 >
-              	   {link.label}
-      	       </NavLink>
-    	     )
-           )}
-	  </nav>
+          <nav className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) =>
+              link.anchor ? (
+                <a
+                  key={link.to}
+                  href={link.to}
+                  className="text-sm font-medium transition-colors text-charcoal/80 hover:text-olive"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  end
+                  className={({ isActive }) =>
+                    `text-sm font-medium transition-colors ${
+                      isActive
+                        ? "text-olive"
+                        : "text-charcoal/80 hover:text-olive"
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              )
+            )}
+          </nav>
 
           <div className="hidden md:block">
             <a
@@ -104,45 +106,45 @@ export default function Navbar() {
         </div>
 
         {/* Mobile nav */}
-	{open && (
-  	  <nav className="md:hidden pb-4 flex flex-col gap-3">
-    	    {navLinks.map((link) =>
-      	      link.to.includes("#") ? (
-        	<Link
-          	  key={link.to}
-          	  to={link.to}
-          	  onClick={() => setOpen(false)}
-          	  className="text-sm font-medium text-charcoal/80"
-        	>
-          	  {link.label}
-        	</Link>
-      	      ) : (
-        	<NavLink
-          	  key={link.to}
-          	  to={link.to}
-          	  end
-          	  onClick={() => setOpen(false)}
-          	  className={({ isActive }) =>
-            `	     text-sm font-medium ${
-              	      isActive ? "text-olive" : "text-charcoal/80"
-            	    }`
-          	  }
-        	>
-          	  {link.label}
-        	</NavLink>
-      	      )
-    	    )}
+        {open && (
+          <nav className="md:hidden pb-4 flex flex-col gap-3">
+            {navLinks.map((link) =>
+              link.anchor ? (
+                <a
+                  key={link.to}
+                  href={link.to}
+                  onClick={() => setOpen(false)}
+                  className="text-sm font-medium text-charcoal/80"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  end
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) =>
+                    `text-sm font-medium ${
+                      isActive ? "text-olive" : "text-charcoal/80"
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              )
+            )}
 
-    	    <a
-      	      href="https://wa.me/4915158845018"
-      	      target="_blank"
-      	      rel="noopener noreferrer"
-      	      className="inline-flex items-center justify-center gap-2 rounded-full bg-olive text-cream px-5 py-2 text-sm font-medium mt-2"
-    	    >
-      	      Request via WhatsApp
-    	   </a>
-  	 </nav>
-	)}
+            <a
+              href="https://wa.me/4915158845018"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-olive text-cream px-5 py-2 text-sm font-medium mt-2"
+            >
+              Request via WhatsApp
+            </a>
+          </nav>
+        )}
       </div>
     </header>
   );
