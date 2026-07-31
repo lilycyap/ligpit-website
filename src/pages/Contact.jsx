@@ -24,6 +24,56 @@ import Icon from "../components/Icon";
 
 const FORM_NAME = "ligpit-inquiry";
 
+const countOptions = ["Not sure", "0", "1", "2", "3", "4", "5+"];
+
+const floorOptions = [
+  "Ground floor",
+  "1st floor",
+  "2nd floor",
+  "3rd floor",
+  "4th floor",
+  "5th floor or higher",
+  "Not sure / to be confirmed",
+];
+
+const elevatorOptions = [
+  "Yes, elevator available",
+  "No elevator / walk-up",
+  "Not sure",
+  "Not applicable",
+];
+
+const focusAreaOptions = [
+  "Kitchen",
+  "Bathroom",
+  "Toilet",
+  "Living room",
+  "Bedroom",
+  "Floors",
+  "Interior windows",
+  "Oven",
+  "Fridge",
+  "Inside cabinets / drawers",
+  "Balcony",
+  "Whole apartment",
+  "Office / workspace",
+];
+
+const priorityOptions = [
+  "General cleaning",
+  "Deep cleaning / catch-up cleaning",
+  "Light organizing / resetting",
+  "Dusting surfaces",
+  "Kitchen grease",
+  "Bathroom kalk / limescale",
+  "Vacuuming and mopping floors",
+  "Laundry folding",
+  "Preparing for guests",
+  "Move-in / move-out reset",
+  "Recurring maintenance",
+  "Not sure yet — I need advice",
+];
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
@@ -38,8 +88,14 @@ export default function Contact() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setError(false);
+
     const form = e.target;
-    const data = Object.fromEntries(new FormData(form));
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    data.focusAreas = formData.getAll("focusAreas").join(", ");
+    data.mainPriorities = formData.getAll("mainPriorities").join(", ");
 
     try {
       await fetch("/", {
@@ -64,10 +120,9 @@ export default function Contact() {
             Request Availability
           </h1>
           <p className="mt-3 text-charcoal/70">
-            Tell Lily a little about your home, office, or workspace.
-            Booking is not instant — every inquiry is reviewed personally
-            so the scope, priorities, and estimate are clear before
-            confirming.
+            Tell Lily a little about your home, office, or workspace. Booking
+            is not instant — every inquiry is reviewed personally so the scope,
+            priorities, and estimate are clear before confirming.
           </p>
         </div>
 
@@ -78,8 +133,8 @@ export default function Contact() {
                 Thank you
               </h2>
               <p className="text-charcoal/70">
-                Thank you — your inquiry has been received. Lily will
-                review the details and get back to you personally.
+                Thank you — your inquiry has been received. Lily will review the
+                details and get back to you personally.
               </p>
             </div>
           ) : (
@@ -89,7 +144,7 @@ export default function Contact() {
               data-netlify="true"
               data-netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
-              className="space-y-5"
+              className="space-y-6"
             >
               {/* Required for Netlify Forms */}
               <input type="hidden" name="form-name" value={FORM_NAME} />
@@ -97,15 +152,15 @@ export default function Contact() {
               {/* Honeypot field — hidden from real users */}
               <p className="hidden">
                 <label>
-                  Don't fill this out if you're human:
+                  Don&apos;t fill this out if you&apos;re human:
                   <input name="bot-field" />
                 </label>
               </p>
 
               {error && (
                 <p className="text-sm text-red-600">
-                  Something went wrong sending your inquiry. Please try
-                  again, or message via WhatsApp instead.
+                  Something went wrong sending your inquiry. Please try again,
+                  or message via WhatsApp instead.
                 </p>
               )}
 
@@ -126,6 +181,7 @@ export default function Contact() {
                     className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
                   />
                 </div>
+
                 <div>
                   <label
                     htmlFor="email"
@@ -179,6 +235,7 @@ export default function Contact() {
                     <option>No preference</option>
                   </select>
                 </div>
+
                 <div>
                   <label
                     htmlFor="preferredContactTime"
@@ -237,6 +294,7 @@ export default function Contact() {
                     <option>Not sure yet</option>
                   </select>
                 </div>
+
                 <div>
                   <label
                     htmlFor="spaceType"
@@ -258,37 +316,194 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
+              {/* ── Space size and access ───────────────────────── */}
+              <fieldset className="rounded-2xl border border-olive/15 bg-cream/30 p-5">
+                <legend className="px-2 text-sm font-medium text-charcoal">
+                  Space details
+                </legend>
+
+                <p className="text-xs text-charcoal/60 mb-4">
+                  Select what applies. Estimates are easier when the number of
+                  rooms and building access are clear.
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div>
+                    <label
+                      htmlFor="bedrooms"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Bedrooms
+                    </label>
+                    <select
+                      id="bedrooms"
+                      name="bedrooms"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                    >
+                      {countOptions.map((option) => (
+                        <option key={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="bathrooms"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Bathrooms
+                    </label>
+                    <select
+                      id="bathrooms"
+                      name="bathrooms"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                    >
+                      {countOptions.map((option) => (
+                        <option key={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="toilets"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Separate toilets
+                    </label>
+                    <select
+                      id="toilets"
+                      name="toilets"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                    >
+                      {countOptions.map((option) => (
+                        <option key={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="kitchens"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Kitchens
+                    </label>
+                    <select
+                      id="kitchens"
+                      name="kitchens"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                    >
+                      {countOptions.map((option) => (
+                        <option key={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="livingRooms"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Living rooms
+                    </label>
+                    <select
+                      id="livingRooms"
+                      name="livingRooms"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                    >
+                      {countOptions.map((option) => (
+                        <option key={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="balconies"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Balconies
+                    </label>
+                    <select
+                      id="balconies"
+                      name="balconies"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                    >
+                      {countOptions.map((option) => (
+                        <option key={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="floorLevel"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Floor level
+                    </label>
+                    <select
+                      id="floorLevel"
+                      name="floorLevel"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                    >
+                      {floorOptions.map((option) => (
+                        <option key={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="elevator"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Elevator
+                    </label>
+                    <select
+                      id="elevator"
+                      name="elevator"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                    >
+                      {elevatorOptions.map((option) => (
+                        <option key={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="mt-4">
                   <label
                     htmlFor="size"
                     className="block text-sm font-medium text-charcoal mb-1"
                   >
-                    Approximate size
+                    Approximate size, if known
                   </label>
                   <input
                     id="size"
                     name="size"
                     type="text"
-                    placeholder="2-room apartment, approx. 60 m² / small office, approx. 100 m²"
+                    placeholder="e.g. 60 m², 2-room apartment, small office"
                     className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
                   />
                 </div>
-                <div>
-                  <label
-                    htmlFor="timing"
-                    className="block text-sm font-medium text-charcoal mb-1"
-                  >
-                    Preferred date or timing
-                  </label>
-                  <input
-                    id="timing"
-                    name="timing"
-                    type="text"
-                    placeholder="e.g. next week, weekday mornings"
-                    className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
-                  />
-                </div>
+              </fieldset>
+
+              <div>
+                <label
+                  htmlFor="timing"
+                  className="block text-sm font-medium text-charcoal mb-1"
+                >
+                  Preferred date or timing
+                </label>
+                <input
+                  id="timing"
+                  name="timing"
+                  type="text"
+                  placeholder="e.g. next week, weekday mornings"
+                  className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                />
               </div>
 
               <div>
@@ -332,37 +547,93 @@ export default function Contact() {
                 </select>
               </div>
 
-              <div>
-                <label
-                  htmlFor="focusAreas"
-                  className="block text-sm font-medium text-charcoal mb-1"
-                >
+              {/* ── Focus areas ─────────────────────────────────── */}
+              <fieldset>
+                <legend className="block text-sm font-medium text-charcoal mb-2">
                   Space or area to focus on
-                </label>
-                <input
-                  id="focusAreas"
-                  name="focusAreas"
-                  type="text"
-                  placeholder="e.g. kitchen, bathroom, whole apartment"
-                  className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
-                />
-              </div>
+                </legend>
 
-              <div>
-                <label
-                  htmlFor="priorities"
-                  className="block text-sm font-medium text-charcoal mb-1"
-                >
+                <p className="text-xs text-charcoal/60 mb-3">
+                  Check all that apply.
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {focusAreaOptions.map((option) => (
+                    <label
+                      key={option}
+                      className="flex items-start gap-3 rounded-xl border border-olive/15 bg-cream/40 px-4 py-3 text-sm text-charcoal/80"
+                    >
+                      <input
+                        type="checkbox"
+                        name="focusAreas"
+                        value={option}
+                        className="mt-0.5 accent-olive"
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+
+                <div className="mt-3">
+                  <label
+                    htmlFor="focusAreasOther"
+                    className="block text-xs font-medium text-charcoal/70 mb-1"
+                  >
+                    Other area or detail
+                  </label>
+                  <input
+                    id="focusAreasOther"
+                    name="focusAreasOther"
+                    type="text"
+                    placeholder="e.g. hallway, storage room, special area"
+                    className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                  />
+                </div>
+              </fieldset>
+
+              {/* ── Main priorities ─────────────────────────────── */}
+              <fieldset>
+                <legend className="block text-sm font-medium text-charcoal mb-2">
                   Main priorities
-                </label>
-                <textarea
-                  id="priorities"
-                  name="priorities"
-                  rows={3}
-                  placeholder="What matters most for this session?"
-                  className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
-                />
-              </div>
+                </legend>
+
+                <p className="text-xs text-charcoal/60 mb-3">
+                  Check all that apply.
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {priorityOptions.map((option) => (
+                    <label
+                      key={option}
+                      className="flex items-start gap-3 rounded-xl border border-olive/15 bg-cream/40 px-4 py-3 text-sm text-charcoal/80"
+                    >
+                      <input
+                        type="checkbox"
+                        name="mainPriorities"
+                        value={option}
+                        className="mt-0.5 accent-olive"
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+
+                <div className="mt-3">
+                  <label
+                    htmlFor="mainPrioritiesOther"
+                    className="block text-xs font-medium text-charcoal/70 mb-1"
+                  >
+                    Other priority or detail
+                  </label>
+                  <textarea
+                    id="mainPrioritiesOther"
+                    name="mainPrioritiesOther"
+                    rows={3}
+                    placeholder="What matters most for this session?"
+                    className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                  />
+                </div>
+              </fieldset>
 
               {/* ── Supplies ─────────────────────────────────────── */}
               <div>
@@ -370,8 +641,7 @@ export default function Contact() {
                   htmlFor="supplies"
                   className="block text-sm font-medium text-charcoal mb-1"
                 >
-                  Do you have basic cleaning supplies and equipment
-                  available?
+                  Do you have basic cleaning supplies and equipment available?
                 </label>
                 <select
                   id="supplies"
@@ -419,8 +689,8 @@ export default function Contact() {
                   htmlFor="shareSpacePhotos"
                   className="block text-sm font-medium text-charcoal mb-1"
                 >
-                  Would you be open to sharing photos or videos of your
-                  space later if needed?
+                  Would you be open to sharing photos or videos of your space
+                  later if needed?
                 </label>
                 <select
                   id="shareSpacePhotos"
@@ -476,6 +746,7 @@ export default function Contact() {
           <p className="text-sm text-charcoal/60 mb-3">
             Prefer to message directly?
           </p>
+
           <a
             href="https://wa.me/4915158845018"
             target="_blank"
@@ -490,6 +761,7 @@ export default function Contact() {
             <p className="text-xs uppercase tracking-wide text-charcoal/40 mb-3">
               Or find Ligpit here
             </p>
+
             <div className="flex items-center justify-center gap-5">
               <a
                 href="https://www.instagram.com/ligpit.berlin"
@@ -500,6 +772,7 @@ export default function Contact() {
               >
                 <Icon name="instagram" className="h-5 w-5" />
               </a>
+
               <a
                 href="https://www.facebook.com/ligpit.berlin/"
                 target="_blank"

@@ -18,7 +18,12 @@
     <title>Ligpit – Form detection (not a real page)</title>
   </head>
   <body>
-    <form name="ligpit-inquiry" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+    <form
+      name="ligpit-inquiry"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+    >
       <input type="hidden" name="form-name" value="ligpit-inquiry" />
       <input name="bot-field" />
 
@@ -60,6 +65,83 @@
         <option>Other workspace</option>
       </select>
 
+      <select name="bedrooms">
+        <option>Not sure</option>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5+</option>
+      </select>
+
+      <select name="bathrooms">
+        <option>Not sure</option>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5+</option>
+      </select>
+
+      <select name="toilets">
+        <option>Not sure</option>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5+</option>
+      </select>
+
+      <select name="kitchens">
+        <option>Not sure</option>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5+</option>
+      </select>
+
+      <select name="livingRooms">
+        <option>Not sure</option>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5+</option>
+      </select>
+
+      <select name="balconies">
+        <option>Not sure</option>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5+</option>
+      </select>
+
+      <select name="floorLevel">
+        <option>Ground floor</option>
+        <option>1st floor</option>
+        <option>2nd floor</option>
+        <option>3rd floor</option>
+        <option>4th floor</option>
+        <option>5th floor or higher</option>
+        <option>Not sure / to be confirmed</option>
+      </select>
+
+      <select name="elevator">
+        <option>Yes, elevator available</option>
+        <option>No elevator / walk-up</option>
+        <option>Not sure</option>
+        <option>Not applicable</option>
+      </select>
+
       <input type="text" name="size" />
       <input type="text" name="timing" />
 
@@ -80,8 +162,66 @@
         <option>Not sure yet</option>
       </select>
 
-      <input type="text" name="focusAreas" />
-      <textarea name="priorities"></textarea>
+      <input type="checkbox" name="focusAreas" value="Kitchen" />
+      <input type="checkbox" name="focusAreas" value="Bathroom" />
+      <input type="checkbox" name="focusAreas" value="Toilet" />
+      <input type="checkbox" name="focusAreas" value="Living room" />
+      <input type="checkbox" name="focusAreas" value="Bedroom" />
+      <input type="checkbox" name="focusAreas" value="Floors" />
+      <input type="checkbox" name="focusAreas" value="Interior windows" />
+      <input type="checkbox" name="focusAreas" value="Oven" />
+      <input type="checkbox" name="focusAreas" value="Fridge" />
+      <input
+        type="checkbox"
+        name="focusAreas"
+        value="Inside cabinets / drawers"
+      />
+      <input type="checkbox" name="focusAreas" value="Balcony" />
+      <input type="checkbox" name="focusAreas" value="Whole apartment" />
+      <input type="checkbox" name="focusAreas" value="Office / workspace" />
+      <input type="text" name="focusAreasOther" />
+
+      <input type="checkbox" name="mainPriorities" value="General cleaning" />
+      <input
+        type="checkbox"
+        name="mainPriorities"
+        value="Deep cleaning / catch-up cleaning"
+      />
+      <input
+        type="checkbox"
+        name="mainPriorities"
+        value="Light organizing / resetting"
+      />
+      <input type="checkbox" name="mainPriorities" value="Dusting surfaces" />
+      <input type="checkbox" name="mainPriorities" value="Kitchen grease" />
+      <input
+        type="checkbox"
+        name="mainPriorities"
+        value="Bathroom kalk / limescale"
+      />
+      <input
+        type="checkbox"
+        name="mainPriorities"
+        value="Vacuuming and mopping floors"
+      />
+      <input type="checkbox" name="mainPriorities" value="Laundry folding" />
+      <input type="checkbox" name="mainPriorities" value="Preparing for guests" />
+      <input
+        type="checkbox"
+        name="mainPriorities"
+        value="Move-in / move-out reset"
+      />
+      <input
+        type="checkbox"
+        name="mainPriorities"
+        value="Recurring maintenance"
+      />
+      <input
+        type="checkbox"
+        name="mainPriorities"
+        value="Not sure yet — I need advice"
+      />
+      <textarea name="mainPrioritiesOther"></textarea>
 
       <select name="supplies">
         <option>Yes</option>
@@ -90,8 +230,16 @@
       </select>
 
       <input type="radio" name="photoConsent" value="Internal records only" />
-      <input type="radio" name="photoConsent" value="Photos/videos may be used for marketing without personal or identifying details" />
-      <input type="radio" name="photoConsent" value="Photos only for internal records" />
+      <input
+        type="radio"
+        name="photoConsent"
+        value="Photos/videos may be used for marketing without personal or identifying details"
+      />
+      <input
+        type="radio"
+        name="photoConsent"
+        value="Photos only for internal records"
+      />
       <input type="radio" name="photoConsent" value="No photos/videos" />
 
       <select name="shareSpacePhotos">
