@@ -18,6 +18,7 @@
 // 1. Go to Site settings → Forms in the Netlify dashboard.
 // 2. Set up a notification (Forms → Settings → Form notifications)
 //    to send new submissions to hello@ligpit.com.
+// 3. Keep /public/forms.html synchronized with every field name in this file.
 
 import { useState } from "react";
 import Icon from "../components/Icon";
@@ -88,15 +89,42 @@ const chatAppointmentChoices = [
   "Short call only if needed",
 ];
 
+const sourceOptions = [
+  "Facebook — personal profile",
+  "Facebook — Ligpit page",
+  "Instagram",
+  "WhatsApp",
+  "Google Search",
+  "Referral",
+  "Returning client",
+  "Other",
+];
+
+const petOptions = [
+  "No pets",
+  "Cat(s)",
+  "Dog(s)",
+  "Other pets",
+  "Prefer to discuss",
+];
+
+const invoiceOptions = ["Yes", "No", "Not sure yet"];
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
   const [inquiryChatPreference, setInquiryChatPreference] = useState(
     "Written form is enough"
   );
+  const [leadSource, setLeadSource] = useState(sourceOptions[0]);
+  const [spaceType, setSpaceType] = useState("Home");
+  const [invoiceRequired, setInvoiceRequired] = useState("No");
 
   const showChatAppointmentFields =
     chatAppointmentChoices.includes(inquiryChatPreference);
+  const showReferralField = leadSource === "Referral";
+  const showOfficeFields = spaceType !== "Home";
+  const showInvoiceFields = invoiceRequired === "Yes";
 
   function encode(data) {
     return Object.keys(data)
@@ -121,6 +149,19 @@ export default function Contact() {
       data.preferredChatDate = "";
       data.preferredChatTime = "";
       data.chatTimingNotes = "";
+    }
+
+    if (!showReferralField) data.referredBy = "";
+
+    if (!showOfficeFields) {
+      data.officeTiming = "";
+      data.companyName = "";
+    }
+
+    if (!showInvoiceFields) {
+      data.billingName = "";
+      data.billingAddress = "";
+      data.vatId = "";
     }
 
     try {
@@ -281,6 +322,51 @@ export default function Contact() {
                   </select>
                 </div>
               </div>
+
+              {/* ── Inquiry source ────────────────────────────────── */}
+              <fieldset className="rounded-2xl border border-olive/15 bg-cream/30 p-5">
+                <legend className="px-2 text-sm font-medium text-charcoal">
+                  How did you hear about Ligpit?
+                </legend>
+
+                <div>
+                  <label
+                    htmlFor="leadSource"
+                    className="block text-sm font-medium text-charcoal mb-1"
+                  >
+                    Source
+                  </label>
+                  <select
+                    id="leadSource"
+                    name="leadSource"
+                    value={leadSource}
+                    onChange={(e) => setLeadSource(e.target.value)}
+                    className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                  >
+                    {sourceOptions.map((option) => (
+                      <option key={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {showReferralField && (
+                  <div className="mt-4">
+                    <label
+                      htmlFor="referredBy"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Who referred you?
+                    </label>
+                    <input
+                      id="referredBy"
+                      name="referredBy"
+                      type="text"
+                      placeholder="Name of the person who referred you"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                    />
+                  </div>
+                )}
+              </fieldset>
 
               {/* ── Inquiry chat preference ──────────────────────── */}
               <fieldset className="rounded-2xl border border-olive/15 bg-cream/30 p-5">
@@ -452,6 +538,8 @@ export default function Contact() {
                   <select
                     id="spaceType"
                     name="spaceType"
+                    value={spaceType}
+                    onChange={(e) => setSpaceType(e.target.value)}
                     className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
                   >
                     <option>Home</option>
@@ -637,6 +725,73 @@ export default function Contact() {
                 </div>
               </fieldset>
 
+              {/* ── Household and access considerations ──────────── */}
+              <fieldset className="rounded-2xl border border-olive/15 bg-cream/30 p-5">
+                <legend className="px-2 text-sm font-medium text-charcoal">
+                  Household and access considerations
+                </legend>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label
+                      htmlFor="pets"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Pets
+                    </label>
+                    <select
+                      id="pets"
+                      name="pets"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                    >
+                      {petOptions.map((option) => (
+                        <option key={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="parkingAccess"
+                      className="block text-sm font-medium text-charcoal mb-1"
+                    >
+                      Parking / loading access
+                    </label>
+                    <select
+                      id="parkingAccess"
+                      name="parkingAccess"
+                      className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                    >
+                      <option>Not needed / public transport access</option>
+                      <option>Street parking nearby</option>
+                      <option>Paid parking nearby</option>
+                      <option>Private parking or loading access available</option>
+                      <option>Not sure</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <label
+                    htmlFor="accessConsiderations"
+                    className="block text-sm font-medium text-charcoal mb-1"
+                  >
+                    Access or household considerations
+                  </label>
+                  <textarea
+                    id="accessConsiderations"
+                    name="accessConsiderations"
+                    rows={3}
+                    placeholder="e.g. call on arrival, baby sleeping, pet instructions, shoes off"
+                    className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                  />
+                  <p className="mt-1 text-xs text-charcoal/50">
+                    Please do not enter door codes, key locations, or other sensitive
+                    security details here. These can be shared privately after booking.
+                  </p>
+                </div>
+              </fieldset>
+
               {/* ── Preferred cleaning session date and time ─────── */}
               <fieldset className="rounded-2xl border border-olive/15 bg-cream/30 p-5">
                 <legend className="px-2 text-sm font-medium text-charcoal">
@@ -698,25 +853,49 @@ export default function Contact() {
                 </div>
               </fieldset>
 
-              <div>
-                <label
-                  htmlFor="officeTiming"
-                  className="block text-sm font-medium text-charcoal mb-1"
-                >
-                  For office / workspace cleaning, preferred cleaning time
-                </label>
-                <select
-                  id="officeTiming"
-                  name="officeTiming"
-                  className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
-                >
-                  <option>Before office hours</option>
-                  <option>After office hours</option>
-                  <option>During office hours, only if quiet or empty</option>
-                  <option>Flexible / to be discussed</option>
-                  <option>Not applicable</option>
-                </select>
-              </div>
+              {showOfficeFields && (
+                <fieldset className="rounded-2xl border border-olive/15 bg-cream/30 p-5">
+                  <legend className="px-2 text-sm font-medium text-charcoal">
+                    Office / workspace details
+                  </legend>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label
+                        htmlFor="companyName"
+                        className="block text-sm font-medium text-charcoal mb-1"
+                      >
+                        Company or workspace name
+                      </label>
+                      <input
+                        id="companyName"
+                        name="companyName"
+                        type="text"
+                        className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="officeTiming"
+                        className="block text-sm font-medium text-charcoal mb-1"
+                      >
+                        Preferred cleaning time
+                      </label>
+                      <select
+                        id="officeTiming"
+                        name="officeTiming"
+                        className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                      >
+                        <option>Before office hours</option>
+                        <option>After office hours</option>
+                        <option>During office hours, only if quiet or empty</option>
+                        <option>Flexible / to be discussed</option>
+                      </select>
+                    </div>
+                  </div>
+                </fieldset>
+              )}
 
               <div>
                 <label
@@ -845,6 +1024,82 @@ export default function Contact() {
                   <option>Not sure</option>
                 </select>
               </div>
+
+              {/* ── Invoice details ─────────────────────────────── */}
+              <fieldset className="rounded-2xl border border-olive/15 bg-cream/30 p-5">
+                <legend className="px-2 text-sm font-medium text-charcoal">
+                  Invoice
+                </legend>
+
+                <div>
+                  <label
+                    htmlFor="invoiceRequired"
+                    className="block text-sm font-medium text-charcoal mb-1"
+                  >
+                    Do you require an invoice?
+                  </label>
+                  <select
+                    id="invoiceRequired"
+                    name="invoiceRequired"
+                    value={invoiceRequired}
+                    onChange={(e) => setInvoiceRequired(e.target.value)}
+                    className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40 bg-white"
+                  >
+                    {invoiceOptions.map((option) => (
+                      <option key={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {showInvoiceFields && (
+                  <div className="mt-5 space-y-4">
+                    <div>
+                      <label
+                        htmlFor="billingName"
+                        className="block text-sm font-medium text-charcoal mb-1"
+                      >
+                        Billing name or company
+                      </label>
+                      <input
+                        id="billingName"
+                        name="billingName"
+                        type="text"
+                        className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="billingAddress"
+                        className="block text-sm font-medium text-charcoal mb-1"
+                      >
+                        Billing address
+                      </label>
+                      <textarea
+                        id="billingAddress"
+                        name="billingAddress"
+                        rows={3}
+                        className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="vatId"
+                        className="block text-sm font-medium text-charcoal mb-1"
+                      >
+                        VAT ID, if applicable
+                      </label>
+                      <input
+                        id="vatId"
+                        name="vatId"
+                        type="text"
+                        className="w-full rounded-lg border border-olive/25 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-olive/40"
+                      />
+                    </div>
+                  </div>
+                )}
+              </fieldset>
 
               {/* ── Photo/video consent ──────────────────────────── */}
               <fieldset>
